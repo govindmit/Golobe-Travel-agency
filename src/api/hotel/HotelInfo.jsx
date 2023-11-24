@@ -1,15 +1,22 @@
 import axios from "axios";
 import config from "../../config/hotel_config";
+
 const tokenId = "GoLYf5ehVWHRyBHpxoOO68LktSo5 ";
 
-export async function FindHotelByCity(cityCode) {
+
+
+export async function FindHotelByCity(cityCode, tokenId) {
+
   try {
     let res = await axios.get(
       `${config.apiUrl}/v1/reference-data/locations/hotels/by-city?cityCode=${cityCode}`,
       {
         headers: {
           "Content-Type": "application/json",
+
           Authorization: `Bearer ${tokenId}`,
+
+
         },
       }
     );
@@ -73,6 +80,7 @@ export async function HotelListByGeoCode(latitude, longitude) {
 export async function OfferSearchInfo(hotelOfferId) {
   try {
     let res = await axios.get(
+
       `${config.apiUrl}/v3/shopping/hotel-offers?=${hotelOfferId}`,
       {
         headers: {
@@ -91,6 +99,7 @@ export async function OfferSearch(hotelOfferId) {
   try {
     let res = await axios.get(
       `${config.apiUrl}/v3/shopping/hotel-offers?hotelIds=${hotelOfferId}`,
+
       {
         headers: {
           "Content-Type": "application/json",
@@ -139,6 +148,12 @@ export async function HotelAutoComplete(keyword, subType) {
 }
 
 export async function fetchAccessToken(data) {
+
+  const data = {
+    client_id: "qGiXGUhGtUPhGvP6IqBv88fiNCfZGFjl",
+    client_secret: "rMh6LQjLgG6ukuzs",
+    grant_type: "client_credentials",
+  };
   try {
     const res = await axios.post(
       `${config.apiUrl}/v1/security/oauth2/token`,
@@ -149,13 +164,25 @@ export async function fetchAccessToken(data) {
         },
       }
     );
-    const AccessToken = res.data.access_token;
-    console.log("set", AccessToken);
-    localStorage.setItem("accessToken", AccessToken);
+
+
+    const accessToken = res.data.access_token;
+
+    const fetchTime = new Date();
+    const expirationTime = new Date(fetchTime.getTime() + 30 * 60000);
+
+    const tokenObject = {
+      token: accessToken,
+      expirationTime: expirationTime.toISOString(),
+      fetchTime: fetchTime.getTime(),
+    };
+    localStorage.setItem("tokenObject", JSON.stringify(tokenObject));
+
   } catch (error) {
     console.error("Error refreshing access token:", error);
   }
 }
+
 
 // // export async function getAccessToken() {
 // //   try {
@@ -207,3 +234,17 @@ export async function fetchAccessToken(data) {
 //     console.error("Error refreshing access token:", error);
 //   }
 // }
+
+export async function getAccessToken() {
+  const currentTime = new Date();
+  const storedTokenObject = JSON.parse(localStorage.getItem("tokenObject"));
+
+  if (currentTime < new Date(storedTokenObject.expirationTime)) {
+    console.log("token is valid", storedTokenObject.token);
+    return storedTokenObject.token;
+  } else {
+    console.log("token is not valid");
+    fetchAccessToken();
+  }
+}
+

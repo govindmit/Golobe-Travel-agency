@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../components/common/home";
+
 import HotelPage from "../components/hotel/HotelPage";
 import SearchPage from "../components/hotel/SearchPage";
 import HotelDetailsPage from "../components/hotel/HotelDetailsPage";
@@ -15,7 +16,10 @@ const AppRoute = () => {
       <Route path="/hotel-search" element={<SearchPage />} />
       <Route path="/hotel-detail" element={<HotelDetailsPage />} />
       <Route path="/hotel-Booking" element={<HotelBookingPage />} />
-    </Routes>
+        <Route path="/" element={<Home />} />;
+      <Route path="/flight" element={<FlightLanding />} />;
+      <Route path="/flight-list" element={<FlightListing/>} />;
+   </Routes>
   );
 };
 

@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 100%;
+  /* width: 100%;
   height: 100%;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 40px;
-  display: inline-flex;
-  .container {
+  display: inline-flex; */
+  /* .container {
     margin-inline: 80px;
   }
   .trip-content {
@@ -59,15 +59,15 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 4px;
     display: inline-flex;
-  }
-  .btn {
+  } */
+  /* .btn {
     color: #112211;
     font-size: 14px;
     max-height: 40px;
     font-family: Montserrat;
     font-weight: 500;
     word-wrap: break-word;
-  }
+  } */
   .card {
     padding: 20px;
     box-shadow: 0px 4px 16px rgba(17, 34, 17, 0.08);

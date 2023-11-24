@@ -1,5 +1,4 @@
 import React from "react";
-import Wrapper from "../../assets/wrapper/tripPlan";
 import img1 from "../../assets/images/plan-trip/trip-1.jpg";
 import img2 from "../../assets/images/plan-trip/trip-2.jpg";
 import img3 from "../../assets/images/plan-trip/trip-3.jpg";
@@ -9,7 +8,8 @@ import img6 from "../../assets/images/plan-trip/trip-6.jpg";
 import img7 from "../../assets/images/plan-trip/trip-7.jpg";
 import img8 from "../../assets/images/plan-trip/trip-8.jpg";
 import img9 from "../../assets/images/plan-trip/trip-9.jpg";
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Box, Container, Grid, Paper, Typography } from "@mui/material";
+import ContentTitle from "./contentTitle";
 import MiniCard from "./miniCard";
 
 const tripData = [
@@ -80,6 +80,7 @@ const tripData = [
 
 const TripPlan = () => {
   return (
+
     <Wrapper>
       <div className="container">
         <div className="trip-content">
@@ -96,6 +97,15 @@ const TripPlan = () => {
           </div>
         </div>
 
+
+    <>
+      <ContentTitle
+        title="Plan your perfect trip"
+        desc=" Search Flights & Places Hire to our most Popular destination"
+        btn="See more "
+      />
+      <Container>
+
         <Grid container spacing={3}>
           {tripData.map((trip) => (
             <Grid item key={trip.id} xs={12} sm={6} md={4} lg={4}>
@@ -103,8 +113,8 @@ const TripPlan = () => {
             </Grid>
           ))}
         </Grid>
-      </div>
-    </Wrapper>
+      </Container>
+    </>
   );
 };
 

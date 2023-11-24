@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
-import { Grid, MenuItem } from "@mui/material";
 
+import AddIcon from "@mui/icons-material/Add";
+import NearMeIcon from "@mui/icons-material/NearMe";
+import { Button, Grid, MenuItem, Typography } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { FlightOfferSearch } from "../../api/flight/flightinfo";
+import { getAccessToken } from "../../api/hotel/HotelInfo";
 const trip = [
   {
     id: 1,
@@ -21,19 +26,19 @@ const trip = [
   },
 ];
 
-function BookingInput() {
+function BookingInput({ btn }) {
   const [inputValue, setInputValue] = useState("");
   const [fromValue, setFromValue] = useState("");
   const [toValue, setToValue] = useState("");
 
   const [passengerInputValue, setPassengerInputValue] = useState("");
-  const [passengerName, setPassengerName] = useState("");
+  const [passenger, setPassenger] = useState("");
   const [classType, setClassType] = useState("");
 
   const [dateValue, setDateValue] = useState("");
   const [dateFromValue, setDateFromValue] = useState("");
   const [dateToValue, setDateToValue] = useState("");
-
+  const [flightData, setFlightData] = useState([]);
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
     const parts = e.target.value.split("-");
@@ -50,16 +55,52 @@ function BookingInput() {
     setPassengerInputValue(e.target.value);
     const parts = e.target.value.split("," || "-");
     if (parts.length === 2) {
-      setPassengerName(parts[0].trim());
+      setPassenger(parts[0].trim());
       setClassType(parts[1].trim());
     } else {
-      setPassengerName("");
+      setPassenger("");
       setClassType("");
     }
   };
 
+  const showFlights = () => {
+    console.log(fromValue, "<=fromValue");
+    console.log(toValue, "<=toValue");
+    console.log(passenger, "<=passenger");
+    console.log(classType, "<=classType");
+    console.log(dateFromValue, "<=dateFromValue");
+    console.log(dateToValue, "<=dateToValue");
+    getAccessToken()
+      .then((res) => {
+        FlightOfferSearch(
+          fromValue,
+          toValue,
+          dateFromValue,
+          dateToValue,
+          passenger,
+          res
+        )
+          .then((res) => {
+            const response = res.data;
+            console.log(response, "response");
+            setFlightData([
+              {
+                airlines: response?.dictionaries?.carriers,
+                airlineDetail: response?.data,
+              },
+            ]);
+          })
+          .catch((e) => {
+            console.log("error", e);
+          });
+      })
+      .catch((e) => {
+        console.log("error", e);
+      });
+  };
+
   const handleSwapClick = () => {
-    // Swap the values of fromValue and toValue
+    // Swap showFlightsthe values of fromValue and toValue
     const temp = fromValue;
     setFromValue(toValue);
     setToValue(temp);
@@ -70,7 +111,7 @@ function BookingInput() {
 
   const handleDateInputChange = (e) => {
     setDateValue(e.target.value);
-    const parts = e.target.value.split("-");
+    const parts = e.target.value.split(",");
     if (parts.length === 2) {
       setDateFromValue(parts[0].trim());
       setDateToValue(parts[1].trim());
@@ -80,6 +121,7 @@ function BookingInput() {
     }
   };
 
+  console.log(flightData);
   return (
     <>
       <Grid container spacing={2}>
@@ -137,11 +179,26 @@ function BookingInput() {
             onChange={handlePassengerInputChange}
             variant="outlined"
             fullWidth
-            placeholder={`${passengerName} , ${classType}`}
-            defaultValue={`${passengerName} , ${classType}`}
+            placeholder={`${passenger} , ${classType}`}
+            defaultValue={`${passenger} , ${classType}`}
           />
         </Grid>
+        {btn && (
+          <button className="search-btn">
+            <SearchIcon />
+          </button>
+        )}
       </Grid>
+      {!btn && (
+        <div className="buttonDiv">
+          <Typography className="buttonStyles">
+            <AddIcon /> Add promo code
+          </Typography>
+          <Button className="showFlight" onClick={() => showFlights()}>
+            <NearMeIcon /> Show Flights
+          </Button>
+        </div>
+      )}
     </>
   );
 }
