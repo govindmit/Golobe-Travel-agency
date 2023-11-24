@@ -6,7 +6,8 @@ import { AppBar, Typography, Toolbar, Button, Box } from "@mui/material";
 const Navbar = ({ isHomePage }) => {
   const navbarStyles = {
     background: isHomePage ? "transparent" : "white",
-    boxShadow:0,
+     boxShadow:0,
+
     color: isHomePage ? "white" : "black",
   };
 
@@ -31,7 +32,7 @@ const Navbar = ({ isHomePage }) => {
   return (
     <AppBar sx={{ ...navbarStyles, ...mediaQueryStyles }} position="absolute">
       <Toolbar>
-        <Box display="flex"  alignItems="center">
+        <Box display="flex" alignItems="center">
           <IoAirplaneSharp style={{ ...iconStyles }} />
           <Typography sx={{ ...navbarStyles }} className="navbar-text">
             Find Flights

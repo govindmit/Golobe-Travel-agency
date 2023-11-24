@@ -80,6 +80,24 @@ const tripData = [
 
 const TripPlan = () => {
   return (
+
+    <Wrapper>
+      <div className="container">
+        <div className="trip-content">
+          <div className="trip-text">
+            <div className="heading-text">Plan your perfect trip</div>
+            <div className="para-text">
+              Search Flights & Places Hire to our most Popular destination
+            </div>
+          </div>
+          <div className="btn-container">
+            <div className="btn-div">
+              <div className="btn">See more places</div>
+            </div>
+          </div>
+        </div>
+
+
     <>
       <ContentTitle
         title="Plan your perfect trip"
@@ -87,6 +105,7 @@ const TripPlan = () => {
         btn="See more "
       />
       <Container>
+
         <Grid container spacing={3}>
           {tripData.map((trip) => (
             <Grid item key={trip.id} xs={12} sm={6} md={4} lg={4}>

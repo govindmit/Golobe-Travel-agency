@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import logo from "../../assets/images/Group.svg";
 import { BiLogoInstagramAlt } from "react-icons/bi";
@@ -38,50 +37,22 @@ const socialIcons = [
 const Fotter = () => {
   return (
     <Wrapper>
-      <div
-        className="foter-secondmain"
-      >
-        <div
-          className="foter-subssection"
-        >
-          <div
-            className="foter-sub-newsletter"
-          >
-            Subscribe Newsletter
-          </div>
-          <div
-            className="foter-travel-sec"
-          >
-            <div
-              className="foter-main-travel"
-            >
-              <div
-                className="travel-text"
-              >
-                The Travel
-              </div>
-              <div
-                className="get-insp-text"
-              >
+      <div className="foter-secondmain">
+        <div className="foter-subssection">
+          <div className="foter-sub-newsletter">Subscribe Newsletter</div>
+          <div className="foter-travel-sec">
+            <div className="foter-main-travel">
+              <div className="travel-text">The Travel</div>
+              <div className="get-insp-text">
                 Get inspired! Receive travel discounts, tips and behind the
                 scenes stories.
               </div>
             </div>
-            <div
-              className="form-em-div"
-            >
-              <div
-                className="input-field-email"
-              >
-                <div
-                  className="emaill"
-                >
-                  <div
-                    className="inner-email-div"
-                  >
-                    <div
-                      className="more-inner"
-                    >
+            <div className="form-em-div">
+              <div className="input-field-email">
+                <div className="emaill">
+                  <div className="inner-email-div">
+                    <div className="more-inner">
                       <MailchimpSubscribe
                         url={url}
                         render={({ subscribe, status, message }) => (
@@ -99,159 +70,68 @@ const Fotter = () => {
             </div>
           </div>
         </div>
-        <div
-          className="image-div-same"
-        >
+        <div className="image-div-same">
           <img className="full-image-control" src={vector} alt="" />
         </div>
       </div>
-      <div
-        className="divforasection"
-      >
+      <div className="divforasection">
         {/*------------------------Iconss-------------------------------------- */}
-        <div
-          className="Iconsdivsection"
-        >
-          <div
-            className="inner-icons"
-          >
-            <div
-              className="logo-image-div"
-            >
+        <div className="Iconsdivsection">
+          <div className="inner-icons">
+            <div className="logo-image-div">
               <img className="main-logo-img" src={logo} alt="logo" />
             </div>
           </div>
-          <div
-            className="social-icons-maindiv"
-          >
+          <div className="social-icons-maindiv">
             {socialIcons.map((item) => {
-              return (
-                <div
-                  className="social-icons"
-                >
-                  {item.icon}
-                </div>
-              );
+              return <div className="social-icons">{item.icon}</div>;
             })}
           </div>
         </div>
         {/*------------------------Below Section's are Wrapped in this Div-------------------------------------- */}
-        <div
-          className="section-dive"
-        >
+        <div className="section-dive">
           {/*------------------------Our Destinatons Section-------------------------------------- */}
-          <div
-            className="Desi-div"
-          >
-            <div
-              className="our-des"
-            >
-              Our Destinations
-            </div>
-            <div
-              className="DesLis"
-            >
+          <div className="Desi-div">
+            <div className="our-des">Our Destinations</div>
+            <div className="DesLis">
               {DestinationList.map((item) => {
-                return (
-                  <div
-                    className="deslismap"
-                  >
-                    {...item}
-                  </div>
-                );
+                return <div className="deslismap">{...item}</div>;
               })}
             </div>
           </div>
           {/*------------------------Our Activities Section-------------------------------------- */}
-          <div
-            className="our-activ-div"
-          >
-            <div
-              className="our-acti"
-            >
-              Our Activities
-            </div>
-            <div
-              className="ActivList"
-            >
+          <div className="our-activ-div">
+            <div className="our-acti">Our Activities</div>
+            <div className="ActivList">
               {ActivityList.map((item) => {
-                return (
-                  <div
-                    className="ActivLisMapitem"
-                  >
-                    {...item}
-                  </div>
-                );
+                return <div className="ActivLisMapitem">{...item}</div>;
               })}
             </div>
           </div>
           {/*------------------------Travel Blogs Section-------------------------------------- */}
-          <div
-            className="Trave-Blog-div"
-          >
-            <div
-              className="TravelBlog"
-            >
-              Travel Blogs
-            </div>
-            <div
-              className="TravelListBl"
-            >
+          <div className="Trave-Blog-div">
+            <div className="TravelBlog">Travel Blogs</div>
+            <div className="TravelListBl">
               {TravelList.map((item) => {
-                return (
-                  <div
-                    className="MapTheTravel"
-                  >
-                    {...item}
-                  </div>
-                );
+                return <div className="MapTheTravel">{...item}</div>;
               })}
             </div>
           </div>
           {/*------------------------About Us Section-------------------------------------- */}
-          <div
-            className="About-Us-div"
-          >
-            <div
-              className="About"
-            >
-              About Us
-            </div>
-            <div
-              className="ListofAbout"
-
-            >
+          <div className="About-Us-div">
+            <div className="About">About Us</div>
+            <div className="ListofAbout">
               {AboutUsList.map((item) => {
-                return (
-                  <div
-                    className="MapTheAbout"
-                  >
-                    {...item}
-                  </div>
-                );
+                return <div className="MapTheAbout">{...item}</div>;
               })}
             </div>
           </div>
           {/*------------------------Contact Us Section-------------------------------------- */}
-          <div
-            className="Contact-us-div"
-          >
-            <div
-              className="Contact"
-            >
-              Contact Us
-            </div>
-            <div
-              className="ListofCont"
-            >
+          <div className="Contact-us-div">
+            <div className="Contact">Contact Us</div>
+            <div className="ListofCont">
               {ContactsList.map((item) => {
-                return (
-                  <div
-                    className="MapTheContList"
-                  >
-                    {...item}
-                  </div>
-                );
+                return <div className="MapTheContList">{...item}</div>;
               })}
             </div>
           </div>

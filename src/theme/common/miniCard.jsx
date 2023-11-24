@@ -17,6 +17,7 @@ const MiniCard = ({ img, country, location, text }) => {
         </Box>
       </Paper>
     </Wrapper>
+
   );
 };
 
