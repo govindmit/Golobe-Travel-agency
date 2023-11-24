@@ -24,12 +24,12 @@ export default function BookingCard() {
           <CardContent>
             <CardMedia className="typeDiv">
               <Typography
-                className={buttonStyles ${isStayPage ? "" : "active"}}
+                className={`buttonStyles ${isStayPage ? "" : "active"}`}
               >
                 <IoAirplaneSharp /> Flights
               </Typography>
               <Typography
-                className={buttonStyles ${isStayPage ? "active" : ""}}
+                className={`buttonStyles ${isStayPage ? "active" : ""}`}
                 onClick={handleStaysClick}
               >
                 <IoBed /> Stays
