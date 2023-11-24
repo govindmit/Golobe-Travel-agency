@@ -1,7 +1,5 @@
 import React from "react";
 import TripPlan from "../../theme/common/tripPlan";
-import BookingCard from "../../theme/common/bookingCard";
-
 import BackImg from "../../theme/common/backImage";
 import Reviews from "../../theme/common/Reviews";
 import Card from "../../theme/common/Card";
@@ -14,7 +12,7 @@ const Home = () => {
       <TripPlan />
       <Card />
       <Reviews />
-      <Fotter/>
+      <Fotter />
     </div>
   );
 };

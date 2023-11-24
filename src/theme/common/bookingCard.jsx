@@ -3,38 +3,41 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea } from "@mui/material";
+import { CardActionArea } from "@mui/material";
 import { IoAirplaneSharp, IoBed } from "react-icons/io5";
 import BookingInput from "./bookingInput";
-import AddIcon from "@mui/icons-material/Add";
-import NearMeIcon from "@mui/icons-material/NearMe";
 import Wrapper from "../../assets/wrapper/bookingSearch";
+import HotelInput from "../hotel/HotelInput";
+import ButtonTitle from "./buttonTitle";
 
 export default function BookingCard() {
+  const [isStayPage, setIsStayPage] = React.useState(false);
+
+  const handleStaysClick = () => {
+    setIsStayPage(true);
+  };
+
   return (
     <Wrapper>
       <Card className="card">
         <CardActionArea>
           <CardContent>
             <CardMedia className="typeDiv">
-              <Typography className="buttonStyles">
+              <Typography
+                className={`buttonStyles ${isStayPage ? "" : "active"}`}
+              >
                 <IoAirplaneSharp /> Flights
               </Typography>
-              <Typography className="buttonStyles">
+              <Typography
+                className={`buttonStyles ${isStayPage ? "active" : ""}`}
+                onClick={handleStaysClick}
+              >
                 <IoBed /> Stays
               </Typography>
             </CardMedia>
-            <div>
-              <BookingInput />
-            </div>
-            <CardMedia className="buttonDiv">
-              <Typography className="buttonStyles">
-                <AddIcon /> Add promo code
-              </Typography>
-              <Typography className="showFlight">
-                <NearMeIcon /> Show Flights
-              </Typography>
-            </CardMedia>
+            <div>{isStayPage ? <HotelInput /> : <BookingInput />}</div>
+
+            {isStayPage ? null : <ButtonTitle title={"Flights"} />}
           </CardContent>
         </CardActionArea>
       </Card>

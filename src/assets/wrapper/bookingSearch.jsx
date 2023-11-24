@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     flex-direction: row;
     align-items: center;
     position: relative;
-    left: 50%;
+    left: 80%;
   }
   .showFlight {
     color: black;
