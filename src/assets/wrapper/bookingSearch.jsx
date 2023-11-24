@@ -41,6 +41,14 @@ const Wrapper = styled.div`
     align-items: center;
     background-color: #8dd3bb;
   }
-`;
+  .textDiv {
 
+    width: 100%;
+    color: #112211;
+    font-size: 20px;
+    font-family: Montserrat;
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+`;
 export default Wrapper;
