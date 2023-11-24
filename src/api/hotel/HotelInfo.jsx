@@ -149,11 +149,11 @@ export async function HotelAutoComplete(keyword, subType) {
 
 export async function fetchAccessToken(data) {
 
-  const data = {
-    client_id: "qGiXGUhGtUPhGvP6IqBv88fiNCfZGFjl",
-    client_secret: "rMh6LQjLgG6ukuzs",
-    grant_type: "client_credentials",
-  };
+  // const data = {
+  //   client_id: "qGiXGUhGtUPhGvP6IqBv88fiNCfZGFjl",
+  //   client_secret: "rMh6LQjLgG6ukuzs",
+  //   grant_type: "client_credentials",
+  // };
   try {
     const res = await axios.post(
       `${config.apiUrl}/v1/security/oauth2/token`,

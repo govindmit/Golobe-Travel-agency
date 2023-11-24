@@ -5,6 +5,8 @@ import HotelPage from "../components/hotel/HotelPage";
 import SearchPage from "../components/hotel/SearchPage";
 import HotelDetailsPage from "../components/hotel/HotelDetailsPage";
 import HotelBookingPage from "../components/hotel/HotelBookingPage";
+import FlightLanding from "../components/flight";
+import FlightListing from "../components/flight/flightBooking";
 
 const AppRoute = () => {
   return (

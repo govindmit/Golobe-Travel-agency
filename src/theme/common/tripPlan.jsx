@@ -11,6 +11,7 @@ import img9 from "../../assets/images/plan-trip/trip-9.jpg";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import ContentTitle from "./contentTitle";
 import MiniCard from "./miniCard";
+import Wrapper from "../../assets/wrapper/tripPlan";
 
 const tripData = [
   {
@@ -80,32 +81,13 @@ const tripData = [
 
 const TripPlan = () => {
   return (
-
     <Wrapper>
-      <div className="container">
-        <div className="trip-content">
-          <div className="trip-text">
-            <div className="heading-text">Plan your perfect trip</div>
-            <div className="para-text">
-              Search Flights & Places Hire to our most Popular destination
-            </div>
-          </div>
-          <div className="btn-container">
-            <div className="btn-div">
-              <div className="btn">See more places</div>
-            </div>
-          </div>
-        </div>
-
-
-    <>
       <ContentTitle
         title="Plan your perfect trip"
         desc=" Search Flights & Places Hire to our most Popular destination"
         btn="See more "
       />
       <Container>
-
         <Grid container spacing={3}>
           {tripData.map((trip) => (
             <Grid item key={trip.id} xs={12} sm={6} md={4} lg={4}>
@@ -114,7 +96,7 @@ const TripPlan = () => {
           ))}
         </Grid>
       </Container>
-    </>
+    </Wrapper>
   );
 };
 
