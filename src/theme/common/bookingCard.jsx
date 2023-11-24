@@ -6,35 +6,33 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea } from "@mui/material";
 import { IoAirplaneSharp, IoBed } from "react-icons/io5";
 import BookingInput from "./bookingInput";
-import AddIcon from "@mui/icons-material/Add";
-import NearMeIcon from "@mui/icons-material/NearMe";
 import Wrapper from "../../assets/wrapper/bookingSearch";
 
-export default function BookingCard() {
+export default function BookingCard({ text }) {
   return (
     <Wrapper>
       <Card className="card">
         <CardActionArea>
           <CardContent>
-            <CardMedia className="typeDiv">
-              <Typography className="buttonStyles">
-                <IoAirplaneSharp /> Flights
-              </Typography>
-              <Typography className="buttonStyles">
-                <IoBed /> Stays
-              </Typography>
-            </CardMedia>
+            {text ? (
+              <CardMedia className="textDiv">
+                <h3 className="buttonStyles">{text}</h3>
+              </CardMedia>
+            ) : (
+              <CardMedia className="typeDiv">
+                <Typography className="buttonStyles">
+                  <IoAirplaneSharp /> Flights
+                </Typography>
+                <Typography className="buttonStyles">
+                  <IoBed /> Stays
+                </Typography>
+              </CardMedia>
+            )}
+
             <div>
               <BookingInput />
             </div>
-            <CardMedia className="buttonDiv">
-              <Typography className="buttonStyles">
-                <AddIcon /> Add promo code
-              </Typography>
-              <Typography className="showFlight">
-                <NearMeIcon /> Show Flights
-              </Typography>
-            </CardMedia>
+          
           </CardContent>
         </CardActionArea>
       </Card>
