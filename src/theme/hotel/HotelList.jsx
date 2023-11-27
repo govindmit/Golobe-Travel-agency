@@ -2,7 +2,11 @@ import { Button, Grid, Typography } from "@mui/material";
 import HotelImageCard from "./HotelImageCard";
 import HotelAddress from "./HotelAddress";
 import { useLocation } from "react-router-dom";
-import { HotelListById, OfferSearch } from "../../api/hotel/HotelInfo";
+import {
+  HotelListById,
+  OfferSearch,
+  getAccessToken,
+} from "../../api/hotel/HotelInfo";
 import React, { useEffect, useState } from "react";
 import hotelImg1 from "../../assets/images/hotel-img/hotel-img1.jpeg";
 import hotelImg2 from "../../assets/images/hotel-img/hotel-img2.jpeg";
@@ -37,14 +41,17 @@ const HotelList = ({ searchInfo }) => {
   const data = localStorage.getItem("searchInfo", JSON.stringify(searchInfo));
 
   useEffect(() => {
-    OfferSearch(hotelIds)
-      .then((res) => {
-        const data = res.data.data;
-        setHotelData(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getAccessToken().then((res) => {
+      const tokenId = res;
+      OfferSearch(hotelIds, tokenId)
+        .then((res) => {
+          const data = res.data.data;
+          setHotelData(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   }, [hotelIds]);
 
   const handleShowMore = () => {
