@@ -104,7 +104,7 @@ const Filter = (airlines) => {
               </button>
             </div>
           )}
-          {showFlightDepartureSection && (
+          {airlineData && showFlightDepartureSection && (
             <div
               style={{
                 marginTop: "10px",
@@ -112,7 +112,7 @@ const Filter = (airlines) => {
                 borderBottom: "2px solid whitesmoke",
               }}
             >
-              <Slider flight="flight"/>
+              <Slider flight="flight" />
             </div>
           )}
 
@@ -138,7 +138,7 @@ const Filter = (airlines) => {
               </div>
             )}
           </Box>
-          {airlines ? (
+          {airlineData ? (
             <>
               <Box className="third-box">
                 <div className="first-box">
@@ -152,7 +152,7 @@ const Filter = (airlines) => {
                 </div>
                 {showAirlineSection && (
                   <div className="checkbox">
-                    {airlineData.map((airline) => {
+                    {airlineData?.map((airline) => {
                       const airlineName = airline.name.toLowerCase();
                       const capitalizedAirlineName =
                         airlineName.charAt(0).toUpperCase() +
