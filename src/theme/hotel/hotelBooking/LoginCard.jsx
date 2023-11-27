@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Wrapper from "../../../assets/wrapper/LoginCardWrapper";
 import EmailIcon from '@mui/icons-material/Email';
 import {
@@ -8,14 +8,18 @@ import {
   Typography,
   TextField,
   Button,
-  Divider,
+  Divider,Modal
 } from "@mui/material";
 import LoginGoogle from "./LoginGoogle";
+import InputModal from "./InputModal";
 
 // googoleclientid="544990497746-ub9gbhv49e1h9gkl1bfac00qk0bnml1e.apps.googleusercontent.com"
 //apikey="AIzaSyDeJZZyrN3ooi7-7hzPSrukoUaiSSJPq6A"
 
 const LoginCard = () => {
+
+
+
   return (
     <Wrapper>
       <Container>
@@ -42,9 +46,13 @@ const LoginCard = () => {
           </Divider>
           <Box>
             <LoginGoogle />
-            <Button variant="outlined" className="btn">
+            <InputModal/>
+            {/* <Button variant="outlined" className="btn" onClick={openModal}>
             <EmailIcon/><Typography className="text3">Continue with email</Typography>
             </Button>
+          
+           {isModalOpen && <InputModal onClose={closeModal} />} */}
+      
             </Box>
 
         </Card>
