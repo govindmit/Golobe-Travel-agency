@@ -3,6 +3,7 @@ import HotelImageList1 from "../../../assets/images/hotel-detail-img/hotel2.jpeg
 import HotelImageList2 from "../../../assets/images/hotel-detail-img/hotel3.jpeg";
 import HotelImageList3 from "../../../assets/images/hotel-detail-img/hotel4.jpeg";
 import HotelImageList4 from "../../../assets/images/hotel-detail-img/hotel5.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const HotelDetailList = () => {
   const data = [
@@ -31,6 +32,10 @@ const HotelDetailList = () => {
       price: "350",
     },
   ];
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/hotel-booking");
+  };
   return (
     <>
       <Box className="ht-li-box">
@@ -54,7 +59,9 @@ const HotelDetailList = () => {
                   </Box>
 
                   <Typography className="ht-li-pr-btn-div">
-                    <Button className="ht-li-btn">Book now</Button>
+                    <Button className="ht-li-btn" onClick={handleClick}>
+                      Book now
+                    </Button>
                   </Typography>
                 </Box>
               </li>

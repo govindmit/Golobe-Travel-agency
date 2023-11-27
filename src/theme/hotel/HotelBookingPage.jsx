@@ -10,7 +10,7 @@ const HotelBookingPage = () => {
     const searchInfoString = localStorage.getItem("searchInfo");
     if (searchInfoString) {
       const parsedSearchInfo = JSON.parse(searchInfoString);
-      // console.log("Data from localStorage:", parsedSearchInfo);
+
       setSearchInfo(parsedSearchInfo);
     }
   }, []);

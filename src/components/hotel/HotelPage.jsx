@@ -7,7 +7,6 @@ const HotelPage = () => {
   return (
     <>
       <HotelPageImage />
-
       <HotelCard />
       <HotelSearch />
       <Fotter />

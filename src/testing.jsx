@@ -17,6 +17,10 @@ const Testing = () => {
           display: "inline-flex",
         }}
       >
+
+
+
+        
         <div
           style={{
             alignSelf: "stretch",
@@ -30,6 +34,7 @@ const Testing = () => {
             style={{ width: 121, height: 120, padding: 16, borderRadius: 12 }}
             src="https://via.placeholder.com/121x120"
           />
+
           <div
             style={{
               width: 257,
@@ -41,6 +46,8 @@ const Testing = () => {
               display: "inline-flex",
             }}
           >
+
+
             <div
               style={{
                 alignSelf: "stretch",
@@ -78,6 +85,9 @@ const Testing = () => {
                 Superior room - 1 double bed or 2 twin beds
               </div>
             </div>
+
+
+
             <div
               style={{
                 alignSelf: "stretch",
@@ -87,6 +97,8 @@ const Testing = () => {
                 display: "inline-flex",
               }}
             >
+
+
               <div
                 style={{
                   width: 40,
@@ -126,6 +138,8 @@ const Testing = () => {
                   </div>
                 </div>
               </div>
+
+
               <div>
                 <span style="color: '#112211', fontSize: 12, fontFamily: 'Montserrat', fontWeight: '700', wordWrap: 'break-word'">
                   Very Good
@@ -134,9 +148,16 @@ const Testing = () => {
                   {" "}
                   54 reviews
                 </span>
-              </div>
+              </div>   
+
+
+
+
             </div>
+
+
           </div>
+
         </div>
 
         <div

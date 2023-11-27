@@ -4,11 +4,14 @@ import { BsStarFill } from "react-icons/bs";
 import LocalCafeIcon from "@mui/icons-material/LocalCafe";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Wrapper from "../../assets/wrapper/HotelListCss";
-import { HotelListByGeoCode, HotelRating } from "../../api/hotel/HotelInfo";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useHotelContext } from "../../context/HotelContext";
 
-const HotelAddress = ({ hotelName }) => {
-  const { name } = hotelName.hotel;
+const HotelAddress = ({ hotelName, startingPrice }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/hotel-detail", { state: { hotelName, startingPrice } });
+  };
 
   return (
     <Wrapper>
@@ -16,7 +19,7 @@ const HotelAddress = ({ hotelName }) => {
         <Box className="Container-Box">
           <Box className="content-div">
             <div className="title-div">
-              <Typography className="title-typo">{name}</Typography>
+              <Typography className="title-typo">{hotelName}</Typography>
 
               <Box className="info-box">
                 <div className="location-div">
@@ -74,8 +77,9 @@ const HotelAddress = ({ hotelName }) => {
               <Typography className="price-start-text">
                 starting from
               </Typography>
+
               <Box style={{ textAlign: "right" }}>
-                <span className="price-span">$240</span>
+                <span className="price-span">{`$${startingPrice}`}</span>
                 <span className="price-span2">/night</span>
               </Box>
               <Typography className="price-text">excl. tax</Typography>
@@ -92,7 +96,9 @@ const HotelAddress = ({ hotelName }) => {
             </div>
 
             <Box className="place-box">
-              <Button className="place-btn">View Place</Button>
+              <Button className="place-btn" onClick={handleClick}>
+                View Place
+              </Button>
             </Box>
           </Box>
         </Box>

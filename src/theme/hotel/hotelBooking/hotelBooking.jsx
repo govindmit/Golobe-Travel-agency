@@ -2,6 +2,7 @@ import { Container, Grid } from "@mui/material";
 import HotelDetailsNav from "../hotelDetails/HotelDetailsNav";
 import HotelBookingCard from "./HotelBookingCard";
 import HotelPrice from "./HotelPrice";
+import BookingPay from "./BookingPay";
 
 const HotelBooking = () => {
   return (
@@ -16,6 +17,7 @@ const HotelBooking = () => {
             <HotelPrice />
           </Grid>
         </Grid>
+        <BookingPay />
         {/* <HotelBookingCard /> */}
         {/* <HotelPrice /> */}
       </Container>

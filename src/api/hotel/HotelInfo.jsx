@@ -1,22 +1,14 @@
 import axios from "axios";
 import config from "../../config/hotel_config";
 
-const tokenId = "GoLYf5ehVWHRyBHpxoOO68LktSo5 ";
-
-
-
 export async function FindHotelByCity(cityCode, tokenId) {
-
   try {
     let res = await axios.get(
       `${config.apiUrl}/v1/reference-data/locations/hotels/by-city?cityCode=${cityCode}`,
       {
         headers: {
           "Content-Type": "application/json",
-
           Authorization: `Bearer ${tokenId}`,
-
-
         },
       }
     );
@@ -43,7 +35,7 @@ export async function HotelSearch(hotelId, adults) {
   }
 }
 
-export async function HotelListById(hotelId) {
+export async function HotelListById(hotelId, tokenId) {
   try {
     let res = await axios.get(
       `${config.apiUrl}/v1/reference-data/locations/hotels/by-hotels?hotelIds=${hotelId}`,
@@ -80,7 +72,6 @@ export async function HotelListByGeoCode(latitude, longitude) {
 export async function OfferSearchInfo(hotelOfferId) {
   try {
     let res = await axios.get(
-
       `${config.apiUrl}/v3/shopping/hotel-offers?=${hotelOfferId}`,
       {
         headers: {
@@ -95,7 +86,7 @@ export async function OfferSearchInfo(hotelOfferId) {
   }
 }
 
-export async function OfferSearch(hotelOfferId) {
+export async function OfferSearch(hotelOfferId, tokenId) {
   try {
     let res = await axios.get(
       `${config.apiUrl}/v3/shopping/hotel-offers?hotelIds=${hotelOfferId}`,
@@ -147,13 +138,12 @@ export async function HotelAutoComplete(keyword, subType) {
   }
 }
 
-export async function fetchAccessToken(data) {
-
-  // const data = {
-  //   client_id: "qGiXGUhGtUPhGvP6IqBv88fiNCfZGFjl",
-  //   client_secret: "rMh6LQjLgG6ukuzs",
-  //   grant_type: "client_credentials",
-  // };
+export async function fetchAccessToken() {
+  const data = {
+    client_id: "mP9AOWGAG0CbOlAkoG2nhS4nE1JykAOD",
+    client_secret: "xqsu9ocPQukgAFiF",
+    grant_type: "client_credentials",
+  };
   try {
     const res = await axios.post(
       `${config.apiUrl}/v1/security/oauth2/token`,
@@ -164,7 +154,6 @@ export async function fetchAccessToken(data) {
         },
       }
     );
-
 
     const accessToken = res.data.access_token;
 
@@ -177,63 +166,10 @@ export async function fetchAccessToken(data) {
       fetchTime: fetchTime.getTime(),
     };
     localStorage.setItem("tokenObject", JSON.stringify(tokenObject));
-
   } catch (error) {
     console.error("Error refreshing access token:", error);
   }
 }
-
-
-// // export async function getAccessToken() {
-// //   try {
-// //     let token = localStorage.getItem("accessToken");
-// //     console.log("hdjfh",token)
-// //     if (!token) {
-// //       console.log("Token not present.");
-// //       return false;
-// //     }
-// //  let decodedToken = jwtDecode(token);
-// //     console.log("Decoded Token", decodedToken);
-// //     let currentDate = new Date();
-
-// //     if (decodedToken.exp * 1000 < currentDate.getTime()) {
-// //       console.log("Token expired.");
-// //     } else {
-// //       console.log("Valid token");
-// //       return true;
-// //     }
-// //   } catch (error) {
-// //     console.error("Error decoding token:", error.message);
-// //     return false;
-// //   }
-// // }
-
-// // async function refreshAccessToken() {
-// //   try {
-// //     const clientId = "qGiXGUhGtUPhGvP6IqBv88fiNCfZGFjl";
-// //     const clientSecret = "rMh6LQjLgG6ukuzs";
-
-// //     const data = {
-// //       grant_type: "client_credentials",
-// //       client_id: clientId,
-// //       client_secret: clientSecret,
-// //     };
-
-//     const res = await axios.post(
-//       `${config.apiUrl}/v1/security/oauth2/token`,
-//       data,
-//       {
-//         headers: {
-//           "Content-Type": "application/x-www-form-urlencoded",
-//         },
-//       }
-//     );
-//     const newAccessToken = res.data.access_token;
-//     localStorage.setItem("accessToken", newAccessToken);
-//   } catch (error) {
-//     console.error("Error refreshing access token:", error);
-//   }
-// }
 
 export async function getAccessToken() {
   const currentTime = new Date();
@@ -247,4 +183,3 @@ export async function getAccessToken() {
     fetchAccessToken();
   }
 }
-
