@@ -2,14 +2,13 @@ import axios from "axios";
 import config from "../../config/hotel_config";
 
 export async function FindHotelByCity(cityCode, tokenId) {
-  console.log(tokenId);
+
   try {
     let res = await axios.get(
       `${config.apiUrl}/v1/reference-data/locations/hotels/by-city?cityCode=${cityCode}`,
       {
         headers: {
           "Content-Type": "application/json",
-
           Authorization: `Bearer ${tokenId}`,
         },
       }
@@ -38,6 +37,7 @@ export async function HotelSearch(hotelId, adults,tokenId) {
 }
 
 export async function HotelListById(hotelId,tokenId) {
+
   try {
     let res = await axios.get(
       `${config.apiUrl}/v1/reference-data/locations/hotels/by-hotels?hotelIds=${hotelId}`,
@@ -143,9 +143,11 @@ export async function HotelAutoComplete(keyword, subType,tokenId) {
 export async function fetchAccessToken() {
 
 
+
   const data = {
     client_id: "qGiXGUhGtUPhGvP6IqBv88fiNCfZGFjl",
     client_secret: "rMh6LQjLgG6ukuzs",
+
 
     grant_type: "client_credentials",
   };

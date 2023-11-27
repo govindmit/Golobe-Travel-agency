@@ -8,16 +8,22 @@ import HotelDetailImage2 from "../../../assets/images/hotel-detail-img/hotel2.jp
 import HotelDetailImage3 from "../../../assets/images/hotel-detail-img/hotel3.jpeg";
 import HotelDetailImage4 from "../../../assets/images/hotel-detail-img/hotel4.jpeg";
 import HotelDetailImage5 from "../../../assets/images/hotel-detail-img/hotel5.jpeg";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const HotelDetailsImage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { hotelName, startingPrice } = location.state;
+  const handleClick = () => {
+    navigate("/hotel-booking");
+  };
+
   return (
     <>
       <Box className="hotel-info-div">
         <Box className="info-container">
           <div className="name-div">
-            <Typography className="ht-text">
-              CVK Park Bosphorus Hotel Istanbul
-            </Typography>
+            <Typography className="ht-text">{hotelName}</Typography>
 
             {Array.from({ length: 5 }, (v, i) => (
               <div className="ht-star" key={i}>
@@ -52,7 +58,7 @@ const HotelDetailsImage = () => {
         <Box className="price-box-div">
           <div style={{ textAlign: "right" }}>
             <span className="pr-span" sx={{ fontSize: "30px" }}>
-              $240
+              {startingPrice}
             </span>
             <span className="pr-span" sx={{ fontSize: "14px" }}>
               /night
@@ -83,7 +89,9 @@ const HotelDetailsImage = () => {
             </Box>
 
             <Box className="book-box">
-              <Typography className="book-text">Book now</Typography>
+              <Button className="book-text" onClick={handleClick}>
+                Book now
+              </Button>
             </Box>
           </Box>
         </Box>
