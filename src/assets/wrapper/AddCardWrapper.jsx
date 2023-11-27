@@ -22,7 +22,7 @@ const Wrapper = styled.section`
     border: none;
     display:flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
   }
   .box{
     width:745px;
@@ -31,14 +31,25 @@ const Wrapper = styled.section`
     margin-left: 12px;
     margin-top: 1rem;
     border-radius: 12px;
+    display:flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  .icon{
+   .icon{
     color: #8dd3bb;
-    height:20px;
-    width:20px;
-  }
+    height:25px;
+    width:25px;
+  } 
+  .text3 {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #112211;
+      font-family: "system-ui";
+      margin-left: 1rem;
+      text-transform: capitalize;
+    }
+
 
 
 `
