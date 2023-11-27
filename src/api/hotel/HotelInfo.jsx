@@ -2,6 +2,7 @@ import axios from "axios";
 import config from "../../config/hotel_config";
 
 export async function FindHotelByCity(cityCode, tokenId) {
+
   try {
     let res = await axios.get(
       `${config.apiUrl}/v1/reference-data/locations/hotels/by-city?cityCode=${cityCode}`,
@@ -18,7 +19,7 @@ export async function FindHotelByCity(cityCode, tokenId) {
   }
 }
 
-export async function HotelSearch(hotelId, adults) {
+export async function HotelSearch(hotelId, adults,tokenId) {
   try {
     let res = await axios.get(
       `${config.apiUrl}/v3/shopping/hotel-offers?hotelIds=${hotelId}&adults=${adults}`,
@@ -35,7 +36,8 @@ export async function HotelSearch(hotelId, adults) {
   }
 }
 
-export async function HotelListById(hotelId, tokenId) {
+export async function HotelListById(hotelId,tokenId) {
+
   try {
     let res = await axios.get(
       `${config.apiUrl}/v1/reference-data/locations/hotels/by-hotels?hotelIds=${hotelId}`,
@@ -52,7 +54,7 @@ export async function HotelListById(hotelId, tokenId) {
   }
 }
 
-export async function HotelListByGeoCode(latitude, longitude) {
+export async function HotelListByGeoCode(latitude, longitude,tokenId) {
   try {
     let res = await axios.get(
       `${config.apiUrl}/v1/reference-data/locations/hotels/by-geocode?latitude=${latitude}&longitude=${longitude}`,
@@ -69,7 +71,7 @@ export async function HotelListByGeoCode(latitude, longitude) {
   }
 }
 //data.offer.id
-export async function OfferSearchInfo(hotelOfferId) {
+export async function OfferSearchInfo(hotelOfferId,tokenId) {
   try {
     let res = await axios.get(
       `${config.apiUrl}/v3/shopping/hotel-offers?=${hotelOfferId}`,
@@ -104,7 +106,7 @@ export async function OfferSearch(hotelOfferId, tokenId) {
   }
 }
 
-export async function HotelRating(hotelId) {
+export async function HotelRating(hotelId,tokenId) {
   try {
     let res = await axios.get(
       `${config.apiUrl}/v2/e-reputation/hotel-sentiments?hotelIds=${hotelId}`,
@@ -121,7 +123,7 @@ export async function HotelRating(hotelId) {
   }
 }
 
-export async function HotelAutoComplete(keyword, subType) {
+export async function HotelAutoComplete(keyword, subType,tokenId) {
   try {
     let res = await axios.get(
       `${config.apiUrl}/v1/reference-data/locations/hotel?keyword=${keyword}&subType=${subType}`,
@@ -139,9 +141,14 @@ export async function HotelAutoComplete(keyword, subType) {
 }
 
 export async function fetchAccessToken() {
+
+
+
   const data = {
-    client_id: "mP9AOWGAG0CbOlAkoG2nhS4nE1JykAOD",
-    client_secret: "xqsu9ocPQukgAFiF",
+    client_id: "qGiXGUhGtUPhGvP6IqBv88fiNCfZGFjl",
+    client_secret: "rMh6LQjLgG6ukuzs",
+
+
     grant_type: "client_credentials",
   };
   try {
@@ -170,6 +177,7 @@ export async function fetchAccessToken() {
     console.error("Error refreshing access token:", error);
   }
 }
+
 
 export async function getAccessToken() {
   const currentTime = new Date();

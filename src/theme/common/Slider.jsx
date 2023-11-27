@@ -8,8 +8,12 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function RangeSlider() {
-  const [value, setValue] = React.useState([50, 1200]);
+export default function RangeSlider(flight) {
+  const flightDeparture = flight.flight;
+  const [value, setValue] = React.useState([
+    flightDeparture ? 12.01 : 50,
+    flightDeparture ? 11.56 : 1200,
+  ]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -22,16 +26,16 @@ export default function RangeSlider() {
           className="slider"
           getAriaLabel={() => "Temperature range"}
           value={value}
-          min={50}
-          max={1200}
+          min={value[0]}
+          max={value[1]}
           onChange={handleChange}
           valueLabelDisplay="auto"
           getAriaValueText={valuetext}
         />
       </Box>
-      <div style={{display:"flex",justifyContent:"space-between"}}>
-      <Typography>${value[0]}</Typography>
-      <Typography>${value[1]}</Typography>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Typography>${value[0]}</Typography>
+        <Typography>${value[1]}</Typography>
       </div>
     </Wrapper>
   );
@@ -41,18 +45,16 @@ const Wrapper = styled.section`
     span.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.css-eg0mwd-MuiSlider-thumb {
       color: #8dd3bb;
     }
-    
+
     span.MuiSlider-root.MuiSlider-colorPrimary.MuiSlider-sizeMedium.slider.css-187mznn-MuiSlider-root {
       color: transparent;
     }
   }
 
-  .box{
+  .box {
     span.MuiSlider-root.MuiSlider-colorPrimary.MuiSlider-sizeMedium.slider.css-187mznn-MuiSlider-root {
       color: black;
       height: 1px;
     }
   }
-
-
 `;

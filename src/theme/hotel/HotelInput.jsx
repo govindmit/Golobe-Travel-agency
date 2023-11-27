@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Grid, TextField, Container } from "@mui/material";
 import BedIcon from "@mui/icons-material/Bed";
@@ -59,7 +60,9 @@ const HotelInput = ({ searchInfo, HomePage }) => {
                 roomsGuests,
               };
               localStorage.setItem("searchInfo", JSON.stringify(searchInfo));
+
               setIds(hotelIds);
+
               navigate("/hotel-search", { state: { hotelIds } });
             } else {
               console.error("Invalid data format returned by API");

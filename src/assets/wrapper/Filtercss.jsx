@@ -2,7 +2,8 @@ import styled from "styled-components";
 const Wrapper = styled.section`
   border-right: 2px solid whitesmoke;
   width: 343px;
-  height: 1500px;
+  height: auto;
+  padding-bottom: 5rem;
   top: 17rem;
   left: 50px;
   position: absolute;
@@ -57,18 +58,18 @@ const Wrapper = styled.section`
     justify-content: inherit;
   }
   .third-box {
-    height: 15rem;
+    height: auto;
     /* border-bottom:2px solid whitesmoke; */
     margin-top: 20px;
     color: #112211;
   }
   .checkbox {
-    height: 13rem;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    position: absolute;
+    position: relative;
     left: 2rem;
   }
   .checkbox {

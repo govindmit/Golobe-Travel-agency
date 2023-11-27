@@ -14,7 +14,7 @@ export default function BookingCard() {
   const [isStayPage, setIsStayPage] = React.useState(false);
 
   const handleStaysClick = () => {
-    setIsStayPage(true);
+    setIsStayPage(!isStayPage);
   };
 
   return (
@@ -25,6 +25,7 @@ export default function BookingCard() {
             <CardMedia className="typeDiv">
               <Typography
                 className={`buttonStyles ${isStayPage ? "" : "active"}`}
+                onClick={handleStaysClick}
               >
                 <IoAirplaneSharp /> Flights
               </Typography>
@@ -37,7 +38,7 @@ export default function BookingCard() {
             </CardMedia>
             <div>{isStayPage ? <HotelInput /> : <BookingInput />}</div>
 
-            {isStayPage ? null : <ButtonTitle title={"Flights"} />}
+            {/* {isStayPage ? null : <ButtonTitle title={"Flights"} />} */}
           </CardContent>
         </CardActionArea>
       </Card>

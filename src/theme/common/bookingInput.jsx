@@ -8,6 +8,7 @@ import { Button, Grid, MenuItem, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { FlightOfferSearch } from "../../api/flight/flightinfo";
 import { getAccessToken } from "../../api/hotel/HotelInfo";
+import { useNavigate } from "react-router-dom";
 const trip = [
   {
     id: 1,
@@ -39,6 +40,9 @@ function BookingInput({ btn }) {
   const [dateFromValue, setDateFromValue] = useState("");
   const [dateToValue, setDateToValue] = useState("");
   const [flightData, setFlightData] = useState([]);
+
+  const navigate = useNavigate();
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
     const parts = e.target.value.split("-");
@@ -64,12 +68,12 @@ function BookingInput({ btn }) {
   };
 
   const showFlights = () => {
-    console.log(fromValue, "<=fromValue");
-    console.log(toValue, "<=toValue");
-    console.log(passenger, "<=passenger");
-    console.log(classType, "<=classType");
-    console.log(dateFromValue, "<=dateFromValue");
-    console.log(dateToValue, "<=dateToValue");
+    // console.log(fromValue, "<=fromValue");
+    // console.log(toValue, "<=toValue");
+    // console.log(passenger, "<=passenger");
+    // console.log(classType, "<=classType");
+    // console.log(dateFromValue, "<=dateFromValue");
+    // console.log(dateToValue, "<=dateToValue");
     getAccessToken()
       .then((res) => {
         FlightOfferSearch(
@@ -83,12 +87,17 @@ function BookingInput({ btn }) {
           .then((res) => {
             const response = res.data;
             console.log(response, "response");
-            setFlightData([
-              {
-                airlines: response?.dictionaries?.carriers,
-                airlineDetail: response?.data,
+
+            navigate("/flight-list", {
+              state: {
+                flightData: [
+                  {
+                    airlines: response?.dictionaries?.carriers,
+                    airlineDetail: response?.data,
+                  },
+                ],
               },
-            ]);
+            });
           })
           .catch((e) => {
             console.log("error", e);
@@ -121,7 +130,6 @@ function BookingInput({ btn }) {
     }
   };
 
-  console.log(flightData);
   return (
     <>
       <Grid container spacing={2}>
@@ -184,7 +192,7 @@ function BookingInput({ btn }) {
           />
         </Grid>
         {btn && (
-          <button className="search-btn">
+          <button className="search-btn" onClick={() => showFlights()}>
             <SearchIcon />
           </button>
         )}

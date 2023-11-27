@@ -47,6 +47,7 @@ const HotelList = ({ searchInfo }) => {
       OfferSearch(hotelIds, tokenId)
         .then((res) => {
           const data = res.data.data;
+
           const extractedData = data.map((offer) => {
             return {
               hotelName: offer.hotel.name,
@@ -54,12 +55,20 @@ const HotelList = ({ searchInfo }) => {
             };
           });
           setHotelData(extractedData);
+
         })
         .catch((err) => {
           console.log(err);
         });
     });
+
   }, [startIndex]);
+
+
+  const handleShowMore = () => {
+    setStartIndex((prevIndex) => prevIndex + itemsPerPage);
+  };
+
 
   return (
     <Grid container spacing={1} sx={{ display: "flex", marginTop: "4.5rem" }}>
