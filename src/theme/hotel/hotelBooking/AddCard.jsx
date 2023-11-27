@@ -5,6 +5,7 @@ import visaicon from "../../../assets/images/visaicon.svg";
 import addicon from "../../../assets/images/addicon.png";
 
 const AddCard = () => {
+  
   const data = "**** 4321 02/27";
   return (
     <Wrapper>

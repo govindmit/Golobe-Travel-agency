@@ -35,7 +35,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+  }  
    .icon{
     color: #8dd3bb;
     height:25px;

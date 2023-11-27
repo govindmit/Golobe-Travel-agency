@@ -14,7 +14,7 @@ const Wrapper = styled.section`
       /* border:2px solid black;  */
       margin-top: 10px;
       position: relative;
-      left: 20px;
+      left: 20px;  
     }
     .text {
       color: #112211;

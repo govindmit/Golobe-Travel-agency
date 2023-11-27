@@ -17,8 +17,8 @@ import InputModal from "./InputModal";
 //apikey="AIzaSyDeJZZyrN3ooi7-7hzPSrukoUaiSSJPq6A"
 
 const LoginCard = () => {
-  ;
- 
+
+
 
   return (
     <Wrapper>
