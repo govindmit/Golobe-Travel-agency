@@ -6,8 +6,8 @@ import { AppBar, Typography, Toolbar, Button, Box } from "@mui/material";
 const Navbar = ({ isHomePage }) => {
   const navbarStyles = {
     background: isHomePage ? "transparent" : "white",
-     boxShadow:0,
-
+    boxShadow: 0,
+    marginTop: isHomePage && "2rem",
     color: isHomePage ? "white" : "black",
   };
 

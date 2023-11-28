@@ -1,8 +1,8 @@
 import { Container, Grid } from "@mui/material";
 import CardContainer from "./CardContainer";
 import Wrapper from "../../assets/wrapper/CardCss";
-import HotelImg from "../../assets/images/home-page-hotel-img.jpeg";
-import FlightImg from "../../assets/images/home-page-flight-img.jpeg";
+import HotelImg from "../../assets/images/home-page-hotel-img.png";
+import FlightImg from "../../assets/images/home-page-flight-img.png";
 
 const data = [
   {

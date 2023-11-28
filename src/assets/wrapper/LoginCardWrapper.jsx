@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   .card {
-    width: 710px;
+    right: 1.5rem;
+    width: 722px;
     height: 420px;
     border-radius: 12px;
-    /* background-color: red; */
-    /* position: relative;
-    right: 3rem; */
+    position: relative;
+    top: 10rem;
     .box {
       height: 208px;
       width: 660px;
       /* border:2px solid black;  */
       margin-top: 10px;
       position: relative;
-      left: 20px;  
+      left: 20px;
     }
     .text {
       color: #112211;
