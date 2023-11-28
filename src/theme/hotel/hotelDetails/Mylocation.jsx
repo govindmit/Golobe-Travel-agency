@@ -12,6 +12,8 @@ import WineBarIcon from "@mui/icons-material/WineBar";
 import RoomServiceIcon from "@mui/icons-material/RoomService";
 import FreeBreakfastIcon from "@mui/icons-material/FreeBreakfast";
 import ReviewsSection from "./ReviewsSection";
+import { Grid } from "@mui/material";
+import Amenities from "./Amenities";
 
 const MyLocation = () => {
   const [showMore, setShowMore] = useState(false);
@@ -50,11 +52,39 @@ const MyLocation = () => {
             </Typography>
           </div>
         </Box>
+
         <Box style={{ marginTop: "4rem", borderTop: "2px solid lightgrey" }}>
           <div style={{ marginTop: "4rem" }}>
             <Typography className="text">Amenities</Typography>
           </div>
+          {/* <Amenities/> */}
+
           <Box className="amenities">
+            <div>
+              <ul>
+                <li>
+                  <PoolIcon className="icon2" />
+                  Outdoor Pool
+                </li>
+                <li>
+                  {" "}
+                  <PoolIcon className="icon2" />
+                  Indoor Pool
+                </li>
+                <li>
+                  <SpaIcon className="icon2" />
+                  Spa and wellness center
+                </li>
+                <li>
+                  <RestaurantIcon className="icon2" />
+                  Restaurant
+                </li>
+                <li>
+                  <RoomServiceIcon className="icon2" />
+                  Room service
+                </li>
+              </ul>
+            </div>
             <div>
               <ul>
                 <li>
@@ -103,18 +133,30 @@ const MyLocation = () => {
                     +24 more
                   </li>
                 )}
-                {showMore &&
+
+                {/* {showMore &&
+                  amenities.map((amenity, index) => (
+                    <li key={index} onClick={handleToggle}>
+                      {amenity.icon}
+                      {amenity.text}
+                    </li>
+                  ))} */}
+              </ul>
+            </div>
+           
+          </Box>
+           <div>
+            {showMore &&
                   amenities.map((amenity, index) => (
                     <li key={index} onClick={handleToggle}>
                       {amenity.icon}
                       {amenity.text}
                     </li>
                   ))}
-              </ul>
-            </div>
-          </Box>
+                  </div>
         </Box>
       </Container>
+
       <ReviewsSection />
     </Wrapper>
   );
