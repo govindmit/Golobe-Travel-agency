@@ -8,9 +8,6 @@ import { Button, Grid, MenuItem, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { FlightOfferSearch } from "../../api/flight/flightinfo";
 import { getAccessToken } from "../../api/hotel/HotelInfo";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import moment from "moment";
 import { useNavigate } from "react-router-dom";
 const trip = [
   {
@@ -39,28 +36,10 @@ function BookingInput({ btn }) {
   const [passenger, setPassenger] = useState("");
   const [classType, setClassType] = useState("");
 
-  // const [dateValue, setDateValue] = useState("");
-  // const [dateFromValue, setDateFromValue] = useState("");
-  // const [dateToValue, setDateToValue] = useState("");
+  const [dateValue, setDateValue] = useState("");
+  const [dateFromValue, setDateFromValue] = useState("");
+  const [dateToValue, setDateToValue] = useState("");
   const [flightData, setFlightData] = useState([]);
-  const [dates, setDates] = useState([]);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [showCalendar, setShowCalendar] = useState(false);
-
-  const formatDate = (date) => moment(date).format("YYYY-MM-DD");
-  const formatPlaceholderDate = (date) => moment(date).format("DD MMM YY");
-
-  const handleDateChange = (start, end) => {
-    const newDate = {
-      key: dates.length + 1,
-      start: formatDate(start),
-      end: formatDate(end),
-    };
-
-    setDates([newDate]);
-    setShowCalendar(false);
-  };
 
   const navigate = useNavigate();
 
@@ -89,6 +68,12 @@ function BookingInput({ btn }) {
   };
 
   const showFlights = () => {
+    // console.log(fromValue, "<=fromValue");
+    // console.log(toValue, "<=toValue");
+    // console.log(passenger, "<=passenger");
+    // console.log(classType, "<=classType");
+    // console.log(dateFromValue, "<=dateFromValue");
+    // console.log(dateToValue, "<=dateToValue");
     getAccessToken()
       .then((res) => {
         FlightOfferSearch(
@@ -133,14 +118,21 @@ function BookingInput({ btn }) {
     setInputValue(`${toValue} - ${fromValue}`);
   };
 
- console.log(dates)
+  const handleDateInputChange = (e) => {
+    setDateValue(e.target.value);
+    const parts = e.target.value.split(",");
+    if (parts.length === 2) {
+      setDateFromValue(parts[0].trim());
+      setDateToValue(parts[1].trim());
+    } else {
+      setDateFromValue("");
+      setDateToValue("");
+    }
+  };
+
   return (
     <>
-      <Grid
-        container
-        className="flight-search-input"
-        style={{ marginRight: 0 }}
-      >
+      <Grid container spacing={2}>
         <Grid item xs={3}>
           <TextField
             className="from-to-input"
@@ -178,42 +170,14 @@ function BookingInput({ btn }) {
         </Grid>
         <Grid item xs={3}>
           <TextField
+            className="from-to-input"
+            label="Depart- Return"
+            value={dateValue}
+            onChange={handleDateInputChange}
             variant="outlined"
-            label="Departure - Return"
-            onFocus={() => setShowCalendar(true)}
-            value={
-              startDate && endDate
-                ? `${formatPlaceholderDate(
-                    startDate
-                  )} - ${formatPlaceholderDate(endDate)}`
-                : ""
-            }
-            readOnly
+            fullWidth
+            placeholder={`${dateFromValue} - ${dateToValue}`}
           />
-          {showCalendar && (
-            <div className="calender-view">
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                startDate={startDate}
-                endDate={endDate}
-                selectsStart
-                inline
-              />
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => {
-                  setEndDate(date);
-                  handleDateChange(startDate, date);
-                }}
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                selectsEnd
-                inline
-              />
-            </div>
-          )}
         </Grid>
         <Grid item xs={3}>
           <TextField

@@ -8,7 +8,6 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-
 export default function RangeSlider(isHotel) {
   // console.log(isHotel)
  
