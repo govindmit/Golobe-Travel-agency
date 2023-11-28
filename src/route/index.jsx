@@ -16,7 +16,7 @@ const AppRoute = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       {/* HOTELS ---- Routing */}
-      <Route path="/hotel-page" element={<HotelPage />} />
+      <Route path="/hotel" element={<HotelPage />} />
       <Route path="/hotel-search" element={<SearchPage />} />
       <Route path="/hotel-detail" element={<HotelDetailsPage />} />
       <Route path="/hotel-Booking" element={<HotelBookingPage />} />

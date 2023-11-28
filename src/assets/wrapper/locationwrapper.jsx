@@ -43,10 +43,10 @@ const Wrapper = styled.section`
   .amenities {
     margin-top: 1rem;
     /* height: 17rem; */
-    width: 36rem;
+    width: auto;
     height: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     /* overflow-y: scroll;
    margin-bottom:10rem; */
   }

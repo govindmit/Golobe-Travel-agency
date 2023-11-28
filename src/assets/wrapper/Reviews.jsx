@@ -95,6 +95,17 @@ const Wrapper = styled.aside`
     height: 500px;
     position: relative;
   }
+  .navbar-text.active {
+    &:after {
+      content: "";
+      display: block;
+      position: relative;
+      top:15px ;
+      width: 100%;
+      height: 5px;
+      background-color: #8dd3bb;
+    }
+  }
   .cards {
     width: 345px; //425px;
     height: 540px;
