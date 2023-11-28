@@ -8,12 +8,9 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function RangeSlider(flight) {
-  const flightDeparture = flight.flight;
-  const [value, setValue] = React.useState([
-    flightDeparture ? 12.01 : 50,
-    flightDeparture ? 11.56 : 1200,
-  ]);
+export default function RangeSlider() {
+ 
+  const [value, setValue] = React.useState([500, 1200]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
