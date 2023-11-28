@@ -201,6 +201,7 @@ function BookingInput({ btn }) {
         <div className="buttonDiv">
           <Typography className="buttonStyles">
             <AddIcon /> Add promo code
+            
           </Typography>
           <Button className="showFlight" onClick={() => showFlights()}>
             <NearMeIcon /> Show Flights
