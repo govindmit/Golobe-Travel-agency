@@ -55,18 +55,19 @@ const HotelInput = ({ searchInfo, HomePage }) => {
     );
     handleModalClose();
   };
-  useEffect(() => {
-    const lowerCaseDestination = destination.toLowerCase();
-    const cityMapping = cityMappings.find(
-      (city) => city.label.toLowerCase() === lowerCaseDestination
-    );
 
-    if (cityMapping) {
-      setCityCode(cityMapping.code);
-    } else {
-      setCityCode("");
-    }
-  }, [destination, cityMappings]);
+  // useEffect(() => {
+  //   const lowerCaseDestination = destination?.toLowerCase?.();
+  //   const cityMapping = cityMappings.find(
+  //     (city) => city.label.toLowerCase() === lowerCaseDestination
+  //   );
+
+  //   if (cityMapping) {
+  //     setCityCode(cityMapping.code);
+  //   } else {
+  //     setCityCode("");
+  //   }
+  // }, [destination, cityMappings]);
 
   useEffect(() => {
     fetchAccessToken();
@@ -75,9 +76,9 @@ const HotelInput = ({ searchInfo, HomePage }) => {
   const handleSearch = () => {
     getAccessToken().then((res) => {
       const tokenId = res;
-      console.log(cityCode);
-      if (cityCode) {
-        FindHotelByCity(cityCode, tokenId)
+      console.log(destination);
+      if (destination) {
+        FindHotelByCity(destination, tokenId)
           .then((res) => {
             const data = res.data.data;
             if (Array.isArray(data)) {
@@ -116,28 +117,35 @@ const HotelInput = ({ searchInfo, HomePage }) => {
   };
 
   return (
-    <Container style={{ marginTop: "20px" }}>
+    <>
       <Grid
-        style={{
+        container
+        spacing={1}
+        sx={{
           display: "flex",
-          alignItems: "center",
-          gap: 20,
-          marginTop: 20,
+          justifyContent: "space-between",
+          marginTop: "10px",
         }}
       >
-        <Grid>
+        <Grid item xs={4}>
           <Autocomplete
-            sx={{ width: "18rem" }}
+            // sx={{ width: "18rem" }}
             id="free-solo-2-demo"
             disableClearable
-            options={cityMappings.map((option) => option.label)}
-            value={searchInfo?.destination || destination}
-            onChange={(e, newValue) => setDestination(newValue)}
+            options={cityMappings.map((option) => ({
+              label: `${option.label} (${option.code})`,
+              value: option.label,
+              code: option.code,
+            }))}
+            getOptionLabel={(option) => option.label || ""}
+            value={
+              cityMappings.find((option) => option.code === destination) || null
+            }
+            onChange={(e, newValue) => setDestination(newValue.code)}
             renderInput={(params) => (
               <TextField
                 {...params}
                 label="Enter Destination"
-                variant="outlined"
                 placeholder="Istanbul, Turkey"
                 InputProps={{
                   ...params.InputProps,
@@ -151,10 +159,10 @@ const HotelInput = ({ searchInfo, HomePage }) => {
           />
         </Grid>
 
-        <Grid>
+        <Grid item xs={2}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              sx={{ width: "9rem" }}
+              // sx={{ width: "9rem" }}
               value={checkInDate}
               onChange={(newDate) => setCheckInDate(newDate)}
               renderInput={(params) => (
@@ -173,10 +181,10 @@ const HotelInput = ({ searchInfo, HomePage }) => {
             />
           </LocalizationProvider>
         </Grid>
-        <Grid>
+        <Grid item xs={2}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              sx={{ width: "9rem" }}
+              // sx={{ width: "9rem" }}
               value={checkOutDate}
               onChange={(newDate) => setCheckOutDate(newDate)}
               renderInput={(params) => (
@@ -196,9 +204,9 @@ const HotelInput = ({ searchInfo, HomePage }) => {
           </LocalizationProvider>
         </Grid>
 
-        <Grid>
+        <Grid item xs={3}>
           <TextField
-            sx={{ width: "13rem" }}
+            // sx={{ width: "13rem" }}
             label="Rooms & Guests"
             variant="outlined"
             value={searchInfo?.roomsGuests || roomsGuests}
@@ -269,10 +277,10 @@ const HotelInput = ({ searchInfo, HomePage }) => {
         </Modal>
       </Grid>
 
-      {HomePage ? null : (
+      {/* {HomePage ? null : (
         <ButtonTitle title={"Places"} onShowPlacesClick={handleSearch} />
-      )}
-    </Container>
+      )} */}
+    </>
   );
 };
 
