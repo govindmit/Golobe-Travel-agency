@@ -90,7 +90,7 @@ const Filter = (airlines) => {
                 borderBottom: "2px solid whitesmoke",
               }}
             >
-              <Slider />
+              <Slider isHotel={true} />
             </div>
           )}
           {airlineData && (
@@ -112,7 +112,7 @@ const Filter = (airlines) => {
                 borderBottom: "2px solid whitesmoke",
               }}
             >
-              <Slider flight="flight" />
+              { <Slider/> }
             </div>
           )}
 

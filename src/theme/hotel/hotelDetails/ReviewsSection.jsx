@@ -44,7 +44,7 @@ const ReviewsSection = () => {
           </Box>
         </Box>
       </Container>
-      <Container style={{ height: "34rem" }}>
+      <Container style={{ height: "auto" }}>
         {currentPeople.map((person, index) => (
           <div
             style={{

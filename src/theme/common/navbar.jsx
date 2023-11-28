@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoAirplaneSharp, IoBed } from "react-icons/io5";
 import Group from "../../assets/images/Group.svg";
 import { AppBar, Typography, Toolbar, Button, Box } from "@mui/material";
+import Wrapper from "../../assets/wrapper/Reviews";
 
-const Navbar = ({ isHomePage }) => {
+import { useNavigate } from "react-router-dom";
+
+const Navbar = ({ isHomePage}) => {
+  const navigate = useNavigate()
+
+  const [flight, setFlight] = useState(false);
+  const [hotel, setHotel] = useState(false);
+
   const navbarStyles = {
     background: isHomePage ? "transparent" : "white",
-     boxShadow:0,
-
+    boxShadow: 0,
     color: isHomePage ? "white" : "black",
+    marginTop: isHomePage && "2rem",
+    marginLeft: isHomePage ? "2rem" : "3rem",
   };
 
   const iconStyles = {
     color: isHomePage ? "white" : "black",
   };
+
+ 
 
   const mediaQueryStyles = {
     "@media (minWidth:500px)": {
@@ -21,52 +32,97 @@ const Navbar = ({ isHomePage }) => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
+      position: "absolute",
+      top: "2rem",
+
       "& .navbar-text": {
-        marginLeft: 0,
-        marginTop: "10px",
         fontSize: "10px",
       },
     },
   };
 
-  return (
-    <AppBar sx={{ ...navbarStyles, ...mediaQueryStyles }} position="absolute">
-      <Toolbar>
-        <Box display="flex" alignItems="center">
-          <IoAirplaneSharp style={{ ...iconStyles }} />
-          <Typography sx={{ ...navbarStyles }} className="navbar-text">
-            Find Flights
-          </Typography>
-        </Box>
-        <Box display="flex" alignItems="center">
-          <IoBed style={{ ...iconStyles, marginLeft: "30px" }} />
-          <Typography sx={{ ...navbarStyles }} className="navbar-text">
-            Find Stays
-          </Typography>
-        </Box>
+  const handleFlight = () => {
+    navigate("/flight")
+    setFlight(true);
+    setHotel(false);
+   
+  };
 
-        <img style={{ marginLeft: "400px" }} src={Group} alt="group" />
-        <Button
-          sx={{
-            marginLeft: "auto",
-            color: isHomePage ? "whitesmoke" : "black",
-          }}
-          variant="text"
-        >
-          Login
-        </Button>
-        <Button
-          sx={{
-            background: isHomePage ? "white" : "black",
-            color: isHomePage ? "black" : "whitesmoke",
-            marginLeft: "10px",
-          }}
-          variant="contained"
-        >
-          SignUp
-        </Button>
-      </Toolbar>
-    </AppBar>
+  const handleHotel = () => {
+    setHotel(true);
+    setFlight(false);
+     navigate("/hotel")
+  };
+  return (
+    <Wrapper>
+      <AppBar
+        sx={{ ...navbarStyles, ...mediaQueryStyles, position: "absolute" }}
+      >
+        <Toolbar sx={{ marginLeft: isHomePage ? "2rem" : "4rem" }}>
+          <div style={{ display: "flex" }}>
+            
+            <Box style={{ display: "flex" }}>
+              <IoAirplaneSharp style={{ ...iconStyles }} />
+              <Typography
+                className={`navbar-text ${flight ? "active" : ""}`}
+                onClick={() => handleFlight()}
+              >
+                Find Flights
+              </Typography>
+            </Box>
+         
+            <Box
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginLeft: "40px",
+             
+              }}
+            >
+              <IoBed style={{ ...iconStyles }} />
+
+              <Typography
+                className={`navbar-text ${hotel ? "active" : ""}`}
+                onClick={() => handleHotel()}
+              >
+                Find Stays
+              </Typography>
+            </Box>
+          </div>
+          <div>
+            <img
+              style={{ marginLeft: "400px", marginTop: "10px" }}
+              src={Group}
+              alt="group"
+            />
+          </div>
+
+          <Button
+            sx={{
+              marginLeft: "17rem",
+              color: isHomePage ? "whitesmoke" : "black",
+            }}
+            variant="text"
+          >
+            Login
+          </Button>
+          <Button
+            style={{
+              background: isHomePage ? "white" : "black",
+              color: isHomePage ? "black" : "whitesmoke",
+              marginLeft: "28px",
+              width: "6rem",
+              height: "2.7rem",
+              borderRadius: "12px",
+              border: "none",
+            }}
+            variant="contained"
+          >
+            Sign up
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </Wrapper>
   );
 };
 

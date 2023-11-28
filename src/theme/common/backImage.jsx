@@ -7,17 +7,18 @@ const BackImg = () => {
   const containerStyle = {
     width: "100%",
     height: "100%",
-    position: "relative",
+   marginTop:"2rem",
     backgroundImage: `url(${Bgimg})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
+    borderRadius:"2rem"
   };
 
   const imageStyle = {
     width: "100%",
     height: "100%",
     objectFit: "cover",
-    borderRadius: 24,
+     borderRadius: "2rem",
   };
 
   const textOverlayStyle = {
@@ -62,7 +63,7 @@ const BackImg = () => {
   };
 
   return (
-    <div>
+    <div  >
       <div style={containerStyle}>
         <img src={RectangleImg} alt="Rectangle Image" style={imageStyle} />
         <div style={{ ...textOverlayStyle, ...mediaQueryStyle }}>
@@ -72,7 +73,7 @@ const BackImg = () => {
           <div style={textlast}>Special offers to suit your plan</div>
         </div>
       </div>
-      <Navbar isHomePage={true} />
+       <Navbar isHomePage={true} isFlightPage={true} isHotelPage={true}/> 
       <BookingCard/>
     </div>
   );

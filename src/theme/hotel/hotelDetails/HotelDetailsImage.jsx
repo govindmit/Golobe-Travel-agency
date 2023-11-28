@@ -13,7 +13,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const HotelDetailsImage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { hotelName, startingPrice } = location.state;
+  // const { hotelName, startingPrice } = location.state;
   const handleClick = () => {
     navigate("/hotel-booking");
   };
@@ -23,7 +23,7 @@ const HotelDetailsImage = () => {
       <Box className="hotel-info-div">
         <Box className="info-container">
           <div className="name-div">
-            <Typography className="ht-text">{hotelName}</Typography>
+            <Typography className="ht-text">njdfjkghjkdfghjk</Typography>
 
             {Array.from({ length: 5 }, (v, i) => (
               <div className="ht-star" key={i}>
@@ -58,7 +58,8 @@ const HotelDetailsImage = () => {
         <Box className="price-box-div">
           <div style={{ textAlign: "right" }}>
             <span className="pr-span" sx={{ fontSize: "30px" }}>
-              {startingPrice}
+              {/* {startingPrice} */}
+              54869547
             </span>
             <span className="pr-span" sx={{ fontSize: "14px" }}>
               /night
