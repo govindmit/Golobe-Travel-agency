@@ -8,12 +8,13 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function RangeSlider(flight) {
-  const flightDeparture = flight.flight;
-  const [value, setValue] = React.useState([
-    flightDeparture ? 12.01 : 50,
-    flightDeparture ? 11.56 : 1200,
-  ]);
+export default function RangeSlider(isHotel) {
+  // console.log(isHotel)
+ 
+  const [value, setValue] = React.useState([0,10]);
+
+  const minRange = isHotel ? 500 : 50;
+  const maxRange = isHotel ? 1200 : 1200;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -21,25 +22,28 @@ export default function RangeSlider(flight) {
 
   return (
     <Wrapper>
+ 
       <Box className="box" sx={{ width: 300 }}>
         <Slider
           className="slider"
           getAriaLabel={() => "Temperature range"}
           value={value}
-          min={value[0]}
-          max={value[1]}
+         
+          min={minRange}
+          max={maxRange}
           onChange={handleChange}
           valueLabelDisplay="auto"
           getAriaValueText={valuetext}
         />
       </Box>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography>${value[0]}</Typography>
-        <Typography>${value[1]}</Typography>
+        <Typography>${minRange}</Typography>
+        <Typography>${maxRange}</Typography>
       </div>
     </Wrapper>
   );
 }
+
 const Wrapper = styled.section`
   .slider {
     span.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.css-eg0mwd-MuiSlider-thumb {
@@ -58,3 +62,41 @@ const Wrapper = styled.section`
     }
   }
 `;
+
+
+
+
+// export default function RangeSlider({ isHotel }) {
+//   const [value, setValue] = React.useState([0, 0]);
+
+//   const minRange = isHotel ? 500 : 50;
+//   const maxRange = isHotel ? 1200 : 1200;
+
+//   const handleChange = (event, newValue) => {
+//     setValue(newValue);
+//   };
+
+//   return (
+//     <Wrapper>
+//       <Box className="box" sx={{ width: 300 }}>
+//         <Slider
+//           className="slider"
+//           getAriaLabel={() => (isHotel ? "Hotel range" : "Other range")}
+//           value={value}
+//           min={minRange}
+//           max={maxRange}
+//           onChange={handleChange}
+//           valueLabelDisplay="auto"
+//           getAriaValueText={valuetext}
+//         />
+//       </Box>
+//       <div style={{ display: "flex", justifyContent: "space-between" }}>
+//         <Typography>${value[0]}</Typography>
+//         <Typography>${value[1]}</Typography>
+//       </div>
+//     </Wrapper>
+//   );
+// }
+
+  
+  
