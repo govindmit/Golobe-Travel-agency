@@ -540,7 +540,6 @@ const Map = (props = HighchartsReact.Props) => {
     }
   }, [token]);
 
-
   const options = {
     series: [
       {

@@ -85,7 +85,7 @@ const TripPlan = () => {
       <ContentTitle
         title="Plan your perfect trip"
         desc=" Search Flights & Places Hire to our most Popular destination"
-        btn="See more "
+        btn="See more places "
       />
       <Container>
         <Grid container spacing={3}>

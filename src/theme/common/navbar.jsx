@@ -15,6 +15,7 @@ const Navbar = ({ isHomePage}) => {
   const navbarStyles = {
     background: isHomePage ? "transparent" : "white",
     boxShadow: 0,
+
     color: isHomePage ? "white" : "black",
     marginTop: isHomePage && "2rem",
     marginLeft: isHomePage ? "2rem" : "3rem",

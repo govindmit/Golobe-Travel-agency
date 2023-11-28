@@ -16,6 +16,8 @@ const BookingPay = () => {
           alignItems: "flex-start",
           //   gap: 16,
           display: "flex",
+          position: "relative",
+          top: "8rem",
         }}
       >
         <Box

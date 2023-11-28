@@ -6,8 +6,18 @@ const CardContainer = ({ title, image, desc, text }) => {
   return (
     <Wrapper>
       <Grid>
-        <Paper style={{ position: "relative", width: "90%", height: "97%" }}>
-          <img src={image} alt="Flights" className="image" />
+        <Paper
+          style={{
+            position: "relative",
+            width: "90%",
+            height: "99%",
+            borderRadius: 15,
+          }}
+        >
+          <Box>
+            <img src={image} alt="Flights" className="image" />
+          </Box>
+
           <div className="box-div">
             <Box p={3} className="box-container">
               <Typography variant="h4" className="box-title">

@@ -10,8 +10,6 @@ import LoginCard from "../theme/hotel/hotelBooking/LoginCard";
 import AddCard from "../theme/hotel/hotelBooking/AddCard";
 
 const AppRoute = () => {
-  
-   
   return (
     <Routes>
       <Route path="/" element={<Home />} />

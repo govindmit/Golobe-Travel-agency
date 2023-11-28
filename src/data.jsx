@@ -1,26 +1,110 @@
-export const data = {
-  delhi: "DEL",
-  paris: "PAR",
-  lyon: "LYS",
-  marseille: "MRS",
-  toulouse: "TLS",
-  strasbourg: "SXB",
-  nice: "NCE",
-  bordeaux: "BOD",
-  lille: "LIL",
-  nantes: "NTE",
-  montpellies: "MPL",
-  rennes: "RNS",
-  avignon: "AVN",
-  dijon: "DIJ",
-  rouen: "URO",
-  reims: "RHE",
-  grenoble: "GNB",
-  metz: "ETZ",
-  laRochelle: "LRH",
-  saintEtienne: "EBU",
-  clermontFerrand: "CFE",
-};
+export const data = [
+  { label: "delhi", code: "DEL" },
+  {
+    label: "paris",
+    code: "PAR",
+  },
+  { label: "lyon", code: "LYS" },
+  {
+    label: "marseille",
+    code: "MRS",
+  },
+  {
+    label: "toulouse",
+    code: "TLS",
+  },
+  {
+    label: "strasbourg",
+    code: "SXB",
+  },
+  {
+    label: "nice",
+    code: "NCE",
+  },
+  {
+    label: "bordeaux",
+    code: "BOD",
+  },
+  {
+    label: "lille",
+    code: "LIL",
+  },
+  {
+    label: "nantes",
+    code: "NTE",
+  },
+  {
+    label: "montpellies",
+    code: "MPL",
+  },
+  {
+    label: "rennes",
+    code: "RNS",
+  },
+  {
+    label: "Le-Touquet-Paris-Plage",
+    code: "LTQ",
+  },
+  {
+    label: "Chalons-Vatry",
+    code: "XCR",
+  },
+  {
+    label: "Orly",
+    code: "ORY",
+  },
+  {
+    label: "Blagnac",
+    code: "TLS",
+  },
+  {
+    label: "Lesquin",
+    code: "LIL",
+  },
+  {
+    label: "London",
+    code: "LON",
+  },
+  {
+    label: "Ottawa",
+    code: "OTT",
+  },
+  {
+    label: "Canberra",
+    code: "CBR",
+  },
+  {
+    label: "Berlin",
+    code: "BER",
+  },
+  {
+    label: "Beijing",
+    code: "BJS",
+  },
+];
+// {
+//   delhi: "DEL",
+//   paris: "PAR",
+//   lyon: "LYS",
+//   marseille: "MRS",
+//   toulouse: "TLS",
+//   strasbourg: "SXB",
+//   nice: "NCE",
+//   bordeaux: "BOD",
+//   lille: "LIL",
+//   nantes: "NTE",
+//   montpellies: "MPL",
+//   rennes: "RNS",
+//   avignon: "AVN",
+//   dijon: "DIJ",
+//   rouen: "URO",
+//   reims: "RHE",
+//   grenoble: "GNB",
+//   metz: "ETZ",
+//   laRochelle: "LRH",
+//   saintEtienne: "EBU",
+//   clermontFerrand: "CFE",
+// };
 
 export const people = [
   {

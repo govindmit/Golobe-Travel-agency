@@ -5,8 +5,9 @@ const Wrapper = styled.aside`
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+
   .main-div {
-    width: 100%;
+    width: 150%;
     height: 100%;
     flex-direction: column;
     justify-content: flex-start;
@@ -88,11 +89,11 @@ const Wrapper = styled.aside`
     align-items: flex-start;
     gap: 24px;
     display: inline-flex;
-    margin-left: 100px;
+    margin-left: 75px;
   }
   .card-div {
-    width: 300px; //450px;
-    height: 500px;
+    width: 418px; //450px;
+    height: 520px;
     position: relative;
   }
   .navbar-text.active {
@@ -107,10 +108,10 @@ const Wrapper = styled.aside`
     }
   }
   .cards {
-    width: 345px; //425px;
-    height: 540px;
-    left: 24px;
-    top: 14px;
+    width: 400px; //425px;
+    height: 550px;
+    left: 45px;
+    top: 22px;
     position: absolute;
     background: rgba(141, 211, 187, 0.4);
     border-radius: 20px;
@@ -130,7 +131,7 @@ const Wrapper = styled.aside`
     display: inline-flex;
   }
   .cards-blog {
-    height: 250px;
+    height: 260px;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -148,7 +149,7 @@ const Wrapper = styled.aside`
   }
   .card-title {
     align-self: stretch;
-    height: 84px;
+    height: 89px;
     color: #112211;
     font-size: 24px;
     font-family: TradeGothic LT Extended;
@@ -157,7 +158,7 @@ const Wrapper = styled.aside`
   }
   .card-description-div {
     align-self: stretch;
-    height: 60px;
+    height: 73px;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -166,7 +167,7 @@ const Wrapper = styled.aside`
   }
   .card-desc {
     align-self: stretch;
-    height: 55px;
+    height: 37px;
     opacity: 0.5;
     color: #112211;
     font-size: 14px;

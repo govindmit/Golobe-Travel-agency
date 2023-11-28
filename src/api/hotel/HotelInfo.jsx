@@ -140,8 +140,10 @@ export async function HotelAutoComplete(keyword, subType, tokenId) {
 
 export async function fetchAccessToken() {
   const data = {
-    client_id: "qGiXGUhGtUPhGvP6IqBv88fiNCfZGFjl",
-    client_secret: "rMh6LQjLgG6ukuzs",
+
+    client_id: "3VNRKwAxrFSnBgBW1UXHERqJDFPgU4pc",
+    client_secret: "MZtAPwzgOWUVaFX6",
+
     grant_type: "client_credentials",
   };
   try {

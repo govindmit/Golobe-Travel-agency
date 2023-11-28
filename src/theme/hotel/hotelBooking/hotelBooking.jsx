@@ -3,6 +3,7 @@ import HotelDetailsNav from "../hotelDetails/HotelDetailsNav";
 import HotelBookingCard from "./HotelBookingCard";
 import HotelPrice from "./HotelPrice";
 import BookingPay from "./BookingPay";
+import LoginCard from "./LoginCard";
 
 const HotelBooking = () => {
   return (
@@ -18,8 +19,7 @@ const HotelBooking = () => {
           </Grid>
         </Grid>
         <BookingPay />
-        {/* <HotelBookingCard /> */}
-        {/* <HotelPrice /> */}
+        <LoginCard />
       </Container>
     </>
   );
