@@ -14,22 +14,18 @@ export default function BookingCard() {
   const [isStayPage, setIsStayPage] = React.useState(false);
 
   const handleStaysClick = () => {
-    setIsStayPage(true);
-  };
-
-  const handleFlightClick = () => {
-    setIsStayPage(false);
+    setIsStayPage(!isStayPage);
   };
 
   return (
     <Wrapper>
       <Card className="card">
-        <CardActionArea className="card-content-container">
+        <CardActionArea>
           <CardContent>
             <CardMedia className="typeDiv">
               <Typography
                 className={`buttonStyles ${isStayPage ? "" : "active"}`}
-                onClick={handleFlightClick}
+                onClick={handleStaysClick}
               >
                 <IoAirplaneSharp /> Flights
               </Typography>
@@ -41,6 +37,8 @@ export default function BookingCard() {
               </Typography>
             </CardMedia>
             <div>{isStayPage ? <HotelInput /> : <BookingInput />}</div>
+
+            {/* {isStayPage ? null : <ButtonTitle title={"Flights"} />} */}
           </CardContent>
         </CardActionArea>
       </Card>
