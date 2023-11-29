@@ -13,26 +13,22 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import BookingForm from "../flight/inputTest";
 const trip = [
   {
     id: 1,
     label: "return",
     value: "return",
   },
+
   {
     id: 2,
-    label: "one-way",
-    value: "one-way",
-  },
-  {
-    id: 1,
     label: "round",
     value: "round",
   },
 ];
 
 function BookingInput({ btn }) {
-  const [inputValue, setInputValue] = useState("");
   const [fromValue, setFromValue] = useState("");
   const [toValue, setToValue] = useState("");
 
@@ -61,18 +57,6 @@ function BookingInput({ btn }) {
 
   const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-    const parts = e.target.value.split("-");
-    if (parts.length === 2) {
-      setFromValue(parts[0].trim());
-      setToValue(parts[1].trim());
-    } else {
-      setFromValue("");
-      setToValue("");
-    }
-  };
-
   const handlePassengerInputChange = (e) => {
     setPassengerInputValue(e.target.value);
     const parts = e.target.value.split("," || "-");
@@ -86,19 +70,13 @@ function BookingInput({ btn }) {
   };
 
   const showFlights = () => {
-    // console.log(fromValue, "<=fromValue");
-    // console.log(toValue, "<=toValue");
-    // console.log(passenger, "<=passenger");
-    // console.log(classType, "<=classType");
-    // console.log(dateFromValue, "<=dateFromValue");
-    // console.log(dateToValue, "<=dateToValue");
     getAccessToken()
       .then((res) => {
         FlightOfferSearch(
           fromValue,
           toValue,
-          dateFromValue,
-          dateToValue,
+          dates[0]?.start,
+          dates[0]?.end,
           passenger,
           res
         )
@@ -126,36 +104,16 @@ function BookingInput({ btn }) {
       });
   };
 
-  const handleSwapClick = () => {
-    // Swap showFlightsthe values of fromValue and toValue
-    const temp = fromValue;
-    setFromValue(toValue);
-    setToValue(temp);
-
-    // Update the input value to show the swapped values
-    setInputValue(`${toValue} - ${fromValue}`);
-  };
-
   return (
     <>
       <Grid container spacing={2} className="flight-search-input">
         <Grid item xs={3}>
-          <TextField
-            className="from-to-input"
-            label=" From - To"
-            value={inputValue}
-            onChange={handleInputChange}
-            variant="outlined"
-            fullWidth
-            InputProps={{
-              endAdornment: (
-                <SwapHorizIcon
-                  style={{ cursor: "pointer" }}
-                  onClick={handleSwapClick}
-                />
-              ),
-            }}
-            placeholder={`${fromValue} - ${toValue}`}
+
+          <BookingForm
+            fromValue={fromValue}
+            toValue={toValue}
+            setFromValue={setFromValue}
+            setToValue={setToValue}
           />
         </Grid>
         <Grid item xs={2}>
@@ -178,7 +136,6 @@ function BookingInput({ btn }) {
           <TextField
             className="from-to-input"
             label="Depart- Return"
-            label="Departure - Return"
             onFocus={() => setShowCalendar(true)}
             value={
               startDate && endDate
