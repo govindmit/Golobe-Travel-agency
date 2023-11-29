@@ -10,6 +10,15 @@ const Wrapper = styled.section`
     justify-content: space-between;
     height: 4.5rem;
   }
+  .card-box {
+    width: 90%;
+    margin-top: 6px;
+    height: 80%;
+    border-right: 1px solid #ccc;
+    /* text-align: unset; */
+    padding-left: 20px;
+
+  }
   .card2 {
     display: flex;
     flex-direction: row;

@@ -4,7 +4,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React, { useState } from "react";
 import Wrapper from "../../assets/wrapper/flightListSorting";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 
 const FlightListSorting = () => {
   const [toggleIcon, setToggleIcon] = useState(true);
@@ -16,30 +16,25 @@ const FlightListSorting = () => {
       <Container>
         <Grid>
           <Card className="card">
-            <Box
-              sx={{ borderRight: "1px solid #ccc" }}
-            >
+            <Box className="card-box" >
               <Typography className="text">Cheapest</Typography>
               <Typography className="text2">$99 .2h18m</Typography>
             </Box>
 
-            <Box
-              sx={{ borderRight: "1px solid #ccc" }}
-            >
+            <Box className="card-box" >
               <Typography className="text">Best</Typography>
               <Typography className="text2">$99 .2h18m</Typography>
             </Box>
 
-            <Box
-              sx={{ borderRight: "1px solid #ccc" }}
-            >
+            <Box className="card-box" >
               <Typography className="text">Quickest</Typography>
               <Typography className="text2">$99 .2h18m</Typography>
             </Box>
-            <Box
-              sx={{ borderRight: "1px solid #ccc" }}
-            >
-              <Typography className="text"><MenuIcon/>Other Sort</Typography>
+            <Box className="card-box" >
+              <Typography className="text">
+                <MenuIcon />
+                Other Sort
+              </Typography>
             </Box>
           </Card>
 

@@ -10,32 +10,42 @@ import Wrapper from "../../assets/wrapper/bookingSearch";
 import HotelInput from "../hotel/HotelInput";
 import ButtonTitle from "./buttonTitle";
 
-export default function BookingCard() {
+export default function BookingCard(text) {
+  const contain = text.text;
+  console.log(contain);
   const [isStayPage, setIsStayPage] = React.useState(false);
 
   const handleStaysClick = () => {
-    setIsStayPage(!isStayPage);
+    setIsStayPage(true);
   };
 
+  const handleFlightClick = () => {
+    setIsStayPage(false);
+  };
   return (
     <Wrapper>
       <Card className="card">
         <CardActionArea>
           <CardContent>
-            <CardMedia className="typeDiv">
-              <Typography
-                className={`buttonStyles ${isStayPage ? "" : "active"}`}
-                onClick={handleStaysClick}
-              >
-                <IoAirplaneSharp /> Flights
-              </Typography>
-              <Typography
-                className={`buttonStyles ${isStayPage ? "active" : ""}`}
-                onClick={handleStaysClick}
-              >
-                <IoBed /> Stays
-              </Typography>
-            </CardMedia>
+            {contain ? (
+              <Typography variant="h6">{contain}</Typography>
+            ) : (
+              <CardMedia className="typeDiv">
+                <Typography
+                  className={`buttonStyles ${isStayPage ? "" : "active"}`}
+                  onClick={handleFlightClick}
+                >
+                  <IoAirplaneSharp /> Flights
+                </Typography>
+                <Typography
+                  className={`buttonStyles ${isStayPage ? "active" : ""}`}
+                  onClick={handleStaysClick}
+                >
+                  <IoBed /> Stays
+                </Typography>
+              </CardMedia>
+            )}
+
             <div>{isStayPage ? <HotelInput /> : <BookingInput />}</div>
 
             {/* {isStayPage ? null : <ButtonTitle title={"Flights"} />} */}
