@@ -5,36 +5,22 @@ import Wrapper from "../../assets/wrapper/HotelBookingCss";
 import { useEffect, useState } from "react";
 
 const HotelBookingPage = () => {
-  const [searchInfo, setSearchInfo] = useState(null);
-  useEffect(() => {
-    const searchInfoString = localStorage.getItem("searchInfo");
-    if (searchInfoString) {
-      const parsedSearchInfo = JSON.parse(searchInfoString);
-
-      setSearchInfo(parsedSearchInfo);
-    }
-  }, []);
   return (
     <>
       <Wrapper>
-        <Container style={{ marginTop: 90 }}>
-          <Grid
-            style={{
-              position: "relative",
-              top: 25,
-              left: 70,
-            }}
-          >
-            <Paper className="paper-container">
-              {searchInfo && (
-                <HotelInput searchInfo={searchInfo} HomePage={true} />
-              )}
-              <Button variant="contained" className="search-btn">
-                <SearchIcon />
-              </Button>
-            </Paper>
-          </Grid>
-        </Container>
+        <Grid
+          style={{
+            position: "relative",
+            top: "5rem",
+            left: "4rem",
+          }}
+        >
+          <Paper className="paper-container">
+            <Grid sx={{ width: "96%" }}>
+              <HotelInput btn="btn" />
+            </Grid>
+          </Paper>
+        </Grid>
       </Wrapper>
     </>
   );

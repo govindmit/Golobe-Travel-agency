@@ -37,8 +37,6 @@ export default function BookingCard() {
               </Typography>
             </CardMedia>
             <div>{isStayPage ? <HotelInput /> : <BookingInput />}</div>
-
-            {/* {isStayPage ? null : <ButtonTitle title={"Flights"} />} */}
           </CardContent>
         </CardActionArea>
       </Card>

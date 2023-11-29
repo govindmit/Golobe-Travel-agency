@@ -1,110 +1,180 @@
 export const data = [
-  { label: "delhi", code: "DEL" },
   {
-    label: "paris",
-    code: "PAR",
-  },
-  { label: "lyon", code: "LYS" },
-  {
-    label: "marseille",
-    code: "MRS",
+    label: "Avignon",
+    code: "AVN",
   },
   {
-    label: "toulouse",
-    code: "TLS",
+    label: "Dijon",
+    code: "DIJ",
   },
-  {
-    label: "strasbourg",
-    code: "SXB",
-  },
-  {
-    label: "nice",
-    code: "NCE",
-  },
-  {
-    label: "bordeaux",
-    code: "BOD",
-  },
-  {
-    label: "lille",
-    code: "LIL",
-  },
-  {
-    label: "nantes",
-    code: "NTE",
-  },
-  {
-    label: "montpellies",
-    code: "MPL",
-  },
-  {
-    label: "rennes",
-    code: "RNS",
-  },
-  {
-    label: "Le-Touquet-Paris-Plage",
-    code: "LTQ",
-  },
-  {
-    label: "Chalons-Vatry",
-    code: "XCR",
-  },
-  {
-    label: "Orly",
-    code: "ORY",
-  },
+
   {
     label: "Blagnac",
     code: "TLS",
   },
+
   {
-    label: "Lesquin",
-    code: "LIL",
+    label: "Beijing",
+    code: "BJS",
   },
   {
-    label: "London",
-    code: "LON",
+    label: "Brasília",
+    code: "BSB",
+  },
+
+  {
+    label: "Brasília",
+    code: "BSB",
+  },
+
+  {
+    label: "Bangkok",
+    code: "BKK",
   },
   {
-    label: "Ottawa",
-    code: "OTT",
+    label: "Bengaluru",
+    code: "BLR",
+  },
+  {
+    label: "Bhathinda",
+    code: "BUP",
+  },
+  {
+    label: "Bordeaux",
+    code: "BOD",
+  },
+  {
+    label: "ClermontFerrand",
+    code: "CFE",
   },
   {
     label: "Canberra",
     code: "CBR",
   },
   {
-    label: "Berlin",
-    code: "BER",
+    label: "Chandigarh",
+    code: "IXC",
   },
   {
-    label: "Beijing",
-    code: "BJS",
+    label: "Chennai",
+    code: "MAA",
+  },
+  {
+    label: "Chalons-Vatry",
+    code: "XCR",
+  },
+  { label: "Delhi", code: "DEL" },
+  {
+    label: "Goa",
+    code: "GOI",
+  },
+  {
+    label: "Grenoble",
+    code: "GNB",
+  },
+  {
+    label: "Hyderabad",
+    code: "HYD",
+  },
+  {
+    label: "Kochi",
+    code: "COK",
+  },
+  {
+    label: "Kolkata",
+    code: "CCU",
+  },
+  { label: "Lyon", code: "LYS" },
+  {
+    label: "Lille",
+    code: "LIL",
+  },
+  {
+    label: "Le-Touquet-Paris-Plage",
+    code: "LTQ",
+  },
+  {
+    label: "LaRochelle",
+    code: "LRH",
+  },
+  {
+    label: "Metz",
+    code: "ETZ",
+  },
+
+  {
+    label: "Marseille",
+    code: "MRS",
+  },
+  {
+    label: "Mumbai",
+    code: "BOM",
+  },
+  {
+    label: "Moscow",
+    code: "MOW",
+  },
+
+  {
+    label: "Montpellies",
+    code: "MPL",
+  },
+
+  {
+    label: "Nantes",
+    code: "NTE",
+  },
+  {
+    label: "Nice",
+    code: "NCE",
+  },
+  {
+    label: "Orly",
+    code: "ORY",
+  },
+
+  {
+    label: "Pune",
+    code: "PNQ",
+  },
+  {
+    label: "Pretoria",
+    code: "PTA",
+  },
+  {
+    label: "Rennes",
+    code: "RNS",
+  },
+  {
+    label: "Rouen",
+    code: "URO",
+  },
+  {
+    label: "Reims",
+    code: "RHE",
+  },
+  {
+    label: "Strasbourg",
+    code: "SXB",
+  },
+  {
+    label: "SaintEtienne",
+    code: "EBU",
+  },
+  {
+    label: "Toulouse",
+    code: "TLS",
+  },
+
+  {
+    label: "Tokyo",
+    code: "TYO",
+  },
+  {
+    label: "Washington, D.C.",
+    code: "WDC",
   },
 ];
-// {
-//   delhi: "DEL",
-//   paris: "PAR",
-//   lyon: "LYS",
-//   marseille: "MRS",
-//   toulouse: "TLS",
-//   strasbourg: "SXB",
-//   nice: "NCE",
-//   bordeaux: "BOD",
-//   lille: "LIL",
-//   nantes: "NTE",
-//   montpellies: "MPL",
-//   rennes: "RNS",
-//   avignon: "AVN",
-//   dijon: "DIJ",
-//   rouen: "URO",
-//   reims: "RHE",
-//   grenoble: "GNB",
-//   metz: "ETZ",
-//   laRochelle: "LRH",
-//   saintEtienne: "EBU",
-//   clermontFerrand: "CFE",
-// };
 
 export const people = [
   {

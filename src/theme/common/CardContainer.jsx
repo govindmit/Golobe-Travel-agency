@@ -1,8 +1,20 @@
 import { Grid, Box, Button, Paper, Typography } from "@mui/material";
 import NearMeIcon from "@mui/icons-material/NearMe";
 import Wrapper from "../../assets/wrapper/CardCss";
+import { useNavigate } from "react-router-dom";
 
 const CardContainer = ({ title, image, desc, text }) => {
+  const navigate = useNavigate();
+
+  const handleSearch = (text) => {
+    console.log(text);
+    if (text === "Hotels") {
+      navigate("/hotel");
+    } else if (text === "Flights") {
+      navigate("/flight");
+    }
+  };
+
   return (
     <Wrapper>
       <Grid>
@@ -26,9 +38,13 @@ const CardContainer = ({ title, image, desc, text }) => {
               <Typography variant="body1" className="box-desc">
                 {desc}
               </Typography>
-              <Button variant="outlined" className="box-btn">
+              <Button
+                variant="outlined"
+                className="box-btn"
+                onClick={() => handleSearch(text)}
+              >
                 <span className="icon">{<NearMeIcon />}</span>
-                {text}
+                Show {text}
               </Button>
             </Box>
           </div>
