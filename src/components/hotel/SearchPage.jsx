@@ -23,7 +23,7 @@ const SearchPage = () => {
           </Grid>
         </div>
         <HotelList />
-        <Fotter />
+        {/* <Fotter /> */}
       </div>
     </>
   );
