@@ -8,6 +8,8 @@ import {
   Grid,
   Typography,
   FormControlLabel,
+  Divider,
+  Button,
 } from "@mui/material";
 import Wrapper from "../../assets/wrapper/Filtercss";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -15,6 +17,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Slider from "./Slider";
 
 const Filter = (airlines) => {
+  const [slider,setSlider] = useState(false)
+
+  const resetFilters = () => {
+     setSlider(true)
+  };
+
+ 
+
   const airlineData = airlines.airlines;
 
   const [showMoreAmenities, setShowMoreAmenities] = useState(false);
@@ -70,6 +80,36 @@ const Filter = (airlines) => {
     <Wrapper>
       <Container>
         <Grid>
+        <Button className="reset"
+            style={{
+              color: "white",
+              background: "#112211",
+              textTransform: "none",
+              width: "4rem",
+              height: "2rem",
+              borderRadius: "8px",
+              border: "none",
+            }}
+            variant="contained"
+            onClick={resetFilters}
+          >
+            Reset
+          </Button>
+          <Button className="reset"
+            style={{
+              color: "white",
+              background: "#112211",
+              textTransform: "none",
+              width: "4rem",
+              height: "2rem",
+              borderRadius: "8px",
+              border: "none",
+            }}
+            variant="contained"
+            onClick={resetFilters}
+          >
+            filter
+          </Button>
           <div>
             <Typography className="filter">Filters</Typography>
           </div>
@@ -86,11 +126,11 @@ const Filter = (airlines) => {
             <div
               style={{
                 marginTop: "10px",
-                height: "65px",
-                borderBottom: "2px solid whitesmoke",
+                height: "auto",
+                // borderBottom: "2px solid whitesmoke",
               }}
             >
-              <Slider isHotel={true} />
+              <Slider isHotel={true} slider={slider} />
             </div>
           )}
           {airlineData && (
@@ -108,14 +148,14 @@ const Filter = (airlines) => {
             <div
               style={{
                 marginTop: "10px",
-                height: "65px",
-                borderBottom: "2px solid whitesmoke",
+                height: "auto",
+                // borderBottom: "2px solid whitesmoke",
               }}
             >
-              { <Slider/> }
+              {<Slider />}
             </div>
           )}
-
+          {/* <Divider></Divider> */}
           <Box className="box-div">
             <div className="first-box">
               <Typography style={{ color: "#112211", marginTop: "10px" }}>
@@ -130,11 +170,11 @@ const Filter = (airlines) => {
             </div>
             {showRatingSection && (
               <div className="second-box">
-                <button className="rating-btn">0+</button>
-                <button className="rating-btn">1+</button>
-                <button className="rating-btn">2+</button>
-                <button className="rating-btn">3+</button>
-                <button className="rating-btn">4+</button>
+                <button>0+</button>
+                <button>1+</button>
+                <button>2+</button>
+                <button>3+</button>
+                <button>4+</button>
               </div>
             )}
           </Box>
@@ -142,7 +182,9 @@ const Filter = (airlines) => {
             <>
               <Box className="third-box">
                 <div className="first-box">
-                  <Typography>Airlines</Typography>
+                  <Typography style={{ marginTop: "20px" }}>
+                    Airlines
+                  </Typography>
                   <button
                     className="btn"
                     onClick={() => handleToggleSection("airlines")}
@@ -172,7 +214,7 @@ const Filter = (airlines) => {
               {/* trip */}
               <Box className="third-box">
                 <div className="first-box">
-                  <Typography>Trips</Typography>
+                  <Typography style={{ marginTop: "20px" }}>Trips</Typography>
                   <button
                     className="btn"
                     onClick={() => handleToggleSection("trips")}
@@ -209,10 +251,15 @@ const Filter = (airlines) => {
             </>
           ) : (
             <>
+              {/* <Divider></Divider> */}
               {/* freebies */}
-              <Box className="third-box">
+              <Box className="box-div">
                 <div className="first-box">
-                  <Typography>Freebies</Typography>
+                  <div>
+                    <Typography style={{ marginTop: "20px" }}>
+                      Freebies
+                    </Typography>
+                  </div>
                   <button
                     className="btn"
                     onClick={() => handleToggleSection("freebies")}
@@ -255,16 +302,21 @@ const Filter = (airlines) => {
                   </div>
                 )}
               </Box>
+              {/* <Divider></Divider> */}
               {/* Amenities */}
               <Box className="third-box">
                 <div className="first-box">
-                  <Typography>Amenities</Typography>
-                  <button
-                    className="btn"
-                    onClick={() => handleToggleSection("amenities")}
-                  >
-                    {toggleIcon ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                  </button>
+                  <Typography style={{ marginTop: "20px" }}>
+                    Amenities
+                  </Typography>
+                  <div>
+                    <button
+                      className="btn"
+                      onClick={() => handleToggleSection("amenities")}
+                    >
+                      {toggleIcon ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                    </button>
+                  </div>
                 </div>
                 {showAmenitiesSection && (
                   <div className="checkbox">
@@ -292,7 +344,6 @@ const Filter = (airlines) => {
 
                     {showMoreAmenities && (
                       <>
-                        {/* Additional checkboxes when showMoreAmenities is true */}
                         <FormGroup>
                           <FormControlLabel
                             control={<Checkbox />}
@@ -423,11 +474,34 @@ const Filter = (airlines) => {
                         24+ more
                       </Typography>
                     )}
+                    {showMoreAmenities && (
+                      <Typography
+                        style={{ color: "#FF8682" }}
+                        onClick={handleToggleMoreAmenities}
+                      >
+                        show less
+                      </Typography>
+                    )}
                   </div>
                 )}
               </Box>
             </>
           )}
+          {/* <Button
+            style={{
+              color: "white",
+              background: "#112211",
+              textTransform: "none",
+              width: "4rem",
+              height: "2rem",
+              borderRadius: "8px",
+              border: "none",
+            }}
+            variant="contained"
+            onClick={resetFilters}
+          >
+            Reset
+          </Button> */}
         </Grid>
       </Container>
     </Wrapper>
