@@ -1,12 +1,7 @@
 import { Button, Grid, Typography } from "@mui/material";
 import HotelImageCard from "./HotelImageCard";
 import HotelAddress from "./HotelAddress";
-import { useLocation } from "react-router-dom";
-import {
-  HotelListById,
-  OfferSearch,
-  getAccessToken,
-} from "../../api/hotel/HotelInfo";
+import { OfferSearch, getAccessToken } from "../../api/hotel/HotelInfo";
 import React, { useEffect, useState } from "react";
 import hotelImg1 from "../../assets/images/hotel-img/hotel-img1.jpeg";
 import hotelImg2 from "../../assets/images/hotel-img/hotel-img2.jpeg";
@@ -35,11 +30,11 @@ const HotelList = ({ searchInfo }) => {
   ];
 
   const { hotelIds } = useHotelContext();
-  const [startIndex, setStartIndex] = useState(0);
   const [hotelData, setHotelData] = useState([]);
   const itemsPerPage = 4;
 
   const data = localStorage.getItem("searchInfo", JSON.stringify(searchInfo));
+
   console.log(hotelIds);
   useEffect(() => {
     getAccessToken().then((res) => {
@@ -47,28 +42,21 @@ const HotelList = ({ searchInfo }) => {
       OfferSearch(hotelIds, tokenId)
         .then((res) => {
           const data = res.data.data;
-
+          console.log(data);
           const extractedData = data.map((offer) => {
             return {
+              hotelId: offer.hotel.hotelId,
               hotelName: offer.hotel.name,
               startingPrice: offer.offers[0].price.variations.average.base,
             };
           });
           setHotelData(extractedData);
-
         })
         .catch((err) => {
           console.log(err);
         });
     });
-
-  }, [startIndex]);
-
-
-  const handleShowMore = () => {
-    setStartIndex((prevIndex) => prevIndex + itemsPerPage);
-  };
-
+  }, [hotelIds.length > 0]);
 
   return (
     <Grid container spacing={1} sx={{ display: "flex", marginTop: "4.5rem" }}>
@@ -83,6 +71,7 @@ const HotelList = ({ searchInfo }) => {
               <HotelAddress
                 hotelName={value.hotelName}
                 startingPrice={value.startingPrice}
+                hotelId={value.hotelId}
               />
             </Grid>
           </>

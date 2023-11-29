@@ -226,6 +226,7 @@ function BookingInput({ btn }) {
             defaultValue={`${passenger} , ${classType}`}
           />
         </Grid>
+        
         {btn && (
           <button className="search-btn" onClick={() => showFlights()}>
             <SearchIcon />

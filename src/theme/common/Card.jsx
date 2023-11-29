@@ -10,14 +10,14 @@ const data = [
     title: "Flights",
     desc: "Search Flights & Places Hire to our most popular destinations",
     image: FlightImg,
-    text: "Show Flights",
+    text: "Flights",
   },
   {
     id: 2,
     title: "Hotels",
     desc: "Search hotels & Places Hire to our most popular destinations",
     image: HotelImg,
-    text: "Show Hotels",
+    text: "Hotels",
   },
 ];
 

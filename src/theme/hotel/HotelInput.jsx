@@ -18,25 +18,26 @@ import {
 } from "../../api/hotel/HotelInfo";
 import { data } from "../../data";
 import { useNavigate } from "react-router-dom";
-import ButtonTitle from "../common/buttonTitle";
+import SearchIcon from "@mui/icons-material/Search";
 import { useHotelContext } from "../../context/HotelContext";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import AddIcon from "@mui/icons-material/Add";
+import NearMeIcon from "@mui/icons-material/NearMe";
+import { toast } from "react-toastify";
 
-const HotelInput = ({ searchInfo, HomePage }) => {
+const HotelInput = ({ btn }) => {
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [roomsGuests, setRoomsGuests] = useState("");
-  const [cityCode, setCityCode] = useState("");
   const [cityMappings, setCityMappings] = useState(data);
-  const { setIds } = useHotelContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState({
-    rooms: 1,
-    adults: 1,
+    rooms: 0,
+    adults: 0,
     children: 0,
   });
   const handleModalOpen = () => {
@@ -55,89 +56,43 @@ const HotelInput = ({ searchInfo, HomePage }) => {
     );
     handleModalClose();
   };
-  useEffect(() => {
-    const lowerCaseDestination = destination.toLowerCase();
-    const cityMapping = cityMappings.find(
-      (city) => city.label.toLowerCase() === lowerCaseDestination
-    );
-
-    if (cityMapping) {
-      setCityCode(cityMapping.code);
-    } else {
-      setCityCode("");
-    }
-  }, [destination, cityMappings]);
 
   useEffect(() => {
     fetchAccessToken();
   }, []);
 
   const handleSearch = () => {
-    getAccessToken().then((res) => {
-      const tokenId = res;
-      console.log(cityCode);
-      if (cityCode) {
-        FindHotelByCity(cityCode, tokenId)
-          .then((res) => {
-            const data = res.data.data;
-            if (Array.isArray(data)) {
-              const hotelIds = [];
-              for (let i = 0; i < Math.min(10, data.length); i++) {
-                const hotel = data[i];
-                if (hotel && hotel.hotelId) {
-                  hotelIds.push(hotel.hotelId);
-                }
-              }
-              const searchInfo = {
-                destination,
-                checkInDate,
-                checkOutDate,
-                roomsGuests,
-              };
-              localStorage.setItem("searchInfo", JSON.stringify(searchInfo));
-
-              setIds(hotelIds);
-
-              navigate("/hotel-search");
-            } else {
-              console.error("Invalid data format returned by API");
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        console.error(
-          "City code not available for the destination:",
-          destination
-        );
-      }
-    });
+    navigate(`/hotel-search?cityCode=${destination}`);
   };
 
   return (
-    <Container style={{ marginTop: "20px" }}>
+    <>
       <Grid
-        style={{
+        container
+        spacing={1}
+        sx={{
           display: "flex",
-          alignItems: "center",
-          gap: 20,
-          marginTop: 20,
+          justifyContent: "space-between",
+          marginTop: "15px",
         }}
       >
-        <Grid>
+        <Grid item xs={4}>
           <Autocomplete
-            sx={{ width: "18rem" }}
-            id="free-solo-2-demo"
             disableClearable
-            options={cityMappings.map((option) => option.label)}
-            value={searchInfo?.destination || destination}
-            onChange={(e, newValue) => setDestination(newValue)}
+            options={cityMappings.map((option) => ({
+              label: `${option.label} (${option.code})`,
+              value: option.label,
+              code: option.code,
+            }))}
+            getOptionLabel={(option) => option.label || ""}
+            value={
+              cityMappings.find((option) => option.code === destination) || null
+            }
+            onChange={(e, newValue) => setDestination(newValue.code)}
             renderInput={(params) => (
               <TextField
                 {...params}
                 label="Enter Destination"
-                variant="outlined"
                 placeholder="Istanbul, Turkey"
                 InputProps={{
                   ...params.InputProps,
@@ -151,16 +106,14 @@ const HotelInput = ({ searchInfo, HomePage }) => {
           />
         </Grid>
 
-        <Grid>
+        <Grid item xs={2}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              sx={{ width: "9rem" }}
               value={checkInDate}
               onChange={(newDate) => setCheckInDate(newDate)}
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  variant="outlined"
                   placeholder="Fri 12/2"
                   label="Check In"
                   InputProps={{
@@ -173,16 +126,21 @@ const HotelInput = ({ searchInfo, HomePage }) => {
             />
           </LocalizationProvider>
         </Grid>
-        <Grid>
+        <Grid item xs={2}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              sx={{ width: "9rem" }}
               value={checkOutDate}
-              onChange={(newDate) => setCheckOutDate(newDate)}
+              onChange={(newDate) => {
+                if (newDate <= checkInDate) {
+                  toast.error("Check-out date must be after check-in date");
+                  setCheckOutDate(null);
+                } else {
+                  setCheckOutDate(newDate);
+                }
+              }}
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  variant="outlined"
                   label="Check-Out"
                   placeholder="Sun 12/4"
                   InputProps={{
@@ -196,13 +154,11 @@ const HotelInput = ({ searchInfo, HomePage }) => {
           </LocalizationProvider>
         </Grid>
 
-        <Grid>
+        <Grid item xs={3}>
           <TextField
-            sx={{ width: "13rem" }}
             label="Rooms & Guests"
             variant="outlined"
-            value={searchInfo?.roomsGuests || roomsGuests}
-            // onChange={(e) => setRoomsGuests(e.target.value)}
+            value={roomsGuests}
             onClick={handleModalOpen}
             placeholder="1 room, 2 guests"
             InputProps={{
@@ -233,7 +189,10 @@ const HotelInput = ({ searchInfo, HomePage }) => {
               type="number"
               value={modalData.rooms}
               onChange={(e) =>
-                setModalData({ ...modalData, rooms: e.target.value })
+                setModalData({
+                  ...modalData,
+                  rooms: Math.max(0, e.target.value),
+                })
               }
               fullWidth
               margin="normal"
@@ -243,7 +202,10 @@ const HotelInput = ({ searchInfo, HomePage }) => {
               type="number"
               value={modalData.adults}
               onChange={(e) =>
-                setModalData({ ...modalData, adults: e.target.value })
+                setModalData({
+                  ...modalData,
+                  adults: Math.max(0, e.target.value),
+                })
               }
               fullWidth
               margin="normal"
@@ -253,7 +215,10 @@ const HotelInput = ({ searchInfo, HomePage }) => {
               type="number"
               value={modalData.children}
               onChange={(e) =>
-                setModalData({ ...modalData, children: e.target.value })
+                setModalData({
+                  ...modalData,
+                  children: Math.max(0, e.target.value),
+                })
               }
               fullWidth
               margin="normal"
@@ -267,12 +232,25 @@ const HotelInput = ({ searchInfo, HomePage }) => {
             </Button>
           </div>
         </Modal>
+
+        {btn && (
+          <button className="search-btn" onClick={() => handleSearch()}>
+            <SearchIcon />
+          </button>
+        )}
       </Grid>
 
-      {HomePage ? null : (
-        <ButtonTitle title={"Places"} onShowPlacesClick={handleSearch} />
+      {!btn && (
+        <div className="buttonDiv">
+          <Typography className="buttonStyles">
+            <AddIcon /> Add promo code
+          </Typography>
+          <Button className="showFlight" onClick={() => handleSearch()}>
+            <NearMeIcon /> Show Places
+          </Button>
+        </div>
       )}
-    </Container>
+    </>
   );
 };
 

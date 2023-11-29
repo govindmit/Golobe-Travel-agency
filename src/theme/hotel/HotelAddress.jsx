@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Icon, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Icon, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { BsStarFill } from "react-icons/bs";
 import LocalCafeIcon from "@mui/icons-material/LocalCafe";
@@ -10,12 +10,12 @@ import { useHotelContext } from "../../context/HotelContext";
 const HotelAddress = ({ hotelName, startingPrice }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/hotel-detail", { state: { hotelName, startingPrice } });
+    // navigate("/hotel-detail", { state: { hotelName, startingPrice } });
   };
 
   return (
     <Wrapper>
-      <Grid>
+      <Container>
         <Box className="Container-Box">
           <Box className="content-div">
             <div className="title-div">
@@ -102,7 +102,7 @@ const HotelAddress = ({ hotelName, startingPrice }) => {
             </Box>
           </Box>
         </Box>
-      </Grid>
+      </Container>
     </Wrapper>
   );
 };

@@ -13,6 +13,11 @@ const AppRoute = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/flight" element={<FlightLanding />} />;
+      <Route path="/flight-list" element={<FlightListing />} />;
+
+
       {/* HOTELS ---- Routing */}
       <Route path="/hotel" element={<HotelPage />} />
       <Route path="/hotel-search" element={<SearchPage />} />
@@ -20,9 +25,6 @@ const AppRoute = () => {
       <Route path="/hotel-Booking" element={<HotelBookingPage />} />
       <Route path="/hotel" element={<LoginCard />} />
       <Route path="/add-card" element={<AddCard />} />
-      <Route path="/" element={<Home />} />
-      <Route path="/flight" element={<FlightLanding />} />;
-      <Route path="/flight-list" element={<FlightListing />} />;
     </Routes>
   );
 };
