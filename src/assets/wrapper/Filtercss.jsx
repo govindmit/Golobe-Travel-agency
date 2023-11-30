@@ -88,7 +88,11 @@ const Wrapper = styled.section`
     color: #ff8682;
     background: transparent;
   }
-  
+  .selected{
+    background: #112211;
+    color:"white";
+  }
+ 
   
 `;
 export default Wrapper;

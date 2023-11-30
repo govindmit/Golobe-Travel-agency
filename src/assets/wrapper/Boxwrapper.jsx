@@ -20,8 +20,10 @@ const Wrapper = styled.section`
     width: 32%;
     padding: 0px 0px 1px 21px;
     margin-top: 1rem;
+    cursor:pointer;
     &.selected {
       border-bottom: 4px solid #8dd3bb;
+      
     }
   }
 

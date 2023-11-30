@@ -28,7 +28,7 @@ const Wrapper = styled.section`
     color: black;
     text-transform: none;
     font-weight: 400;
-  }
+    }
   .icon {
     height: 21px;
     width: 15px;

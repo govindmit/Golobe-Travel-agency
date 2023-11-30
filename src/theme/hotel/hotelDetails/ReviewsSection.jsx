@@ -5,11 +5,12 @@ import { people } from "../../../../src/data";
 import { IoFlag } from "react-icons/io5";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import ReviewModal from './ReviewModal'
 
 const ReviewsSection = () => {
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
-
+  
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentPeople = people.slice(indexOfFirstItem, indexOfLastItem);
@@ -26,10 +27,8 @@ const ReviewsSection = () => {
     <Wrapper>
       <Container className="container">
         <Box className="box">
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography className="text">Reviews</Typography>
-            <Button className="btn">Give your reviews</Button>
-          </div>
+         
+           <ReviewModal/>
 
           <Box className="box2">
             <div>
