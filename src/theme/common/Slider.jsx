@@ -1,49 +1,36 @@
+
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { styled } from "styled-components";
-import { Typography } from "@mui/material";
+import { Typography} from "@mui/material";
 
 function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function RangeSlider({isHotel,slider}) {
-
-  const minRange = isHotel ? 500 : 50;
-  const maxRange = isHotel ? 1200 : 1200;
- 
-  const [value, setValue] = React.useState([minRange,maxRange]);
-  React.useEffect(() => {
-    if(slider){
-      setValue([50,1200])
-    }
-  }, [slider])
+export default function RangeSlider(props) {
+  const {min, max,handleChange,value} = props;
   
-  console.log(slider)
-  const handleChange = (event,newValue) => {
-    setValue(newValue);
-    
-  };
-
-  return (
+return (
     <Wrapper>
- 
       <Box className="box" sx={{ width: 300 }}>
         <Slider
           className="slider"
           getAriaLabel={() => "Temperature range"}
-          value={value} 
-          min={minRange}
-          max={maxRange}
+          value={value}
+          min={min}
+          max={max}
           onChange={handleChange}
           valueLabelDisplay="auto"
           getAriaValueText={valuetext}
         />
       </Box>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography>${minRange}</Typography>
-        <Typography>${maxRange}</Typography>
+        <Typography>${min}</Typography>
+        <Typography>${max}</Typography>
+        
       </div>
     </Wrapper>
   );
@@ -68,8 +55,3 @@ const Wrapper = styled.section`
   }
 `;
 
-
-
-
-  
-  

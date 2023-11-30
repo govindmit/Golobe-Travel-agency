@@ -15,6 +15,7 @@ import ReviewsSection from "./ReviewsSection";
 
 const MyLocation = () => {
   const [showMore, setShowMore] = useState(false);
+  const [showMap,setShowMap]=useState(false)
 
   const fitnessCenterAmenities = Array(24).fill({
     icon: <WifiIcon className="icon2" />,
@@ -25,6 +26,8 @@ const MyLocation = () => {
 
   const handleToggle = () => {
     setShowMore(!showMore);
+    setShowMap(!showMap)
+
   };
   return (
     <Wrapper>
@@ -32,10 +35,10 @@ const MyLocation = () => {
         <Box className="box">
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Typography className="text">Location/Map</Typography>
-            <Button className="btn">View on google maps</Button>
+            <Button className="btn" onClick={handleToggle}>View on google maps </Button>
           </div>
           <div>
-            <Map />
+          {showMap && <Map />}  
           </div>
           <div style={{ display: "flex", marginTop: "5px" }}>
             <LocationOnIcon className="icon" />

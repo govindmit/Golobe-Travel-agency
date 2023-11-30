@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  AppBar,
   Box,
   Checkbox,
   Container,
@@ -16,15 +15,52 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Slider from "./Slider";
 
-const Filter = (airlines) => {
-  const [slider,setSlider] = useState(false)
+const min=  500 ;
+  const max = 1200 ;
 
-  const resetFilters = () => {
-     setSlider(true)
+
+
+const Filter = (airlines) => {
+  const [value, setValue] = useState([min,max]);
+  const [selectedValue, setSelectedValue] = useState(null);
+ 
+  const handleValueSelection = (value) => {
+    setSelectedValue(value);
+
   };
 
- 
+  
+  const [checked, setChecked] = React.useState({
+    MULTILINGUAL_STAFF: false,
+    WEDDING_SERVICES: false,
+    CASINO: false,
+    Free_breakFast:false,
+    Free_cancellation:false,
+    Free_airport_shuttle:false,
+    Free_parking:false,Free_internet:false,front_desk:false,Air_conditioned:false,pool:false,Fitness:false,
+    
+  });
 
+  const handleCheckboxChange = (checkboxName) => {
+   
+    setChecked((prevChecked) => ({
+      ...prevChecked,
+      [checkboxName]: !prevChecked[checkboxName],
+    }));
+  };
+
+  
+ 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleReset = () => {
+    setValue([min, max]);
+    setChecked(false);
+    setSelectedValue(null);
+  };
+  
   const airlineData = airlines.airlines;
 
   const [showMoreAmenities, setShowMoreAmenities] = useState(false);
@@ -80,7 +116,7 @@ const Filter = (airlines) => {
     <Wrapper>
       <Container>
         <Grid>
-        <Button className="reset"
+        <Button 
             style={{
               color: "white",
               background: "#112211",
@@ -91,11 +127,11 @@ const Filter = (airlines) => {
               border: "none",
             }}
             variant="contained"
-            onClick={resetFilters}
+            onClick={handleReset}
           >
             Reset
           </Button>
-          <Button className="reset"
+          <Button 
             style={{
               color: "white",
               background: "#112211",
@@ -104,9 +140,10 @@ const Filter = (airlines) => {
               height: "2rem",
               borderRadius: "8px",
               border: "none",
+              marginLeft:"1rem"
             }}
             variant="contained"
-            onClick={resetFilters}
+            
           >
             filter
           </Button>
@@ -127,10 +164,10 @@ const Filter = (airlines) => {
               style={{
                 marginTop: "10px",
                 height: "auto",
-                // borderBottom: "2px solid whitesmoke",
+             
               }}
             >
-              <Slider isHotel={true} slider={slider} />
+            {<Slider min={min} max={max} handleChange={handleChange} value={value}/>}
             </div>
           )}
           {airlineData && (
@@ -149,7 +186,7 @@ const Filter = (airlines) => {
               style={{
                 marginTop: "10px",
                 height: "auto",
-                // borderBottom: "2px solid whitesmoke",
+             
               }}
             >
               {<Slider />}
@@ -170,11 +207,15 @@ const Filter = (airlines) => {
             </div>
             {showRatingSection && (
               <div className="second-box">
-                <button>0+</button>
-                <button>1+</button>
-                <button>2+</button>
-                <button>3+</button>
-                <button>4+</button>
+               {[0, 1, 2, 3, 4].map((value) => (
+      <button
+        key={value}
+        className={value === selectedValue ? 'selected' : ''}
+        onClick={() => handleValueSelection(value)}
+      >
+        {value}+
+      </button>
+    ))}
               </div>
             )}
           </Box>
@@ -202,7 +243,7 @@ const Filter = (airlines) => {
                       return (
                         <FormGroup>
                           <FormControlLabel
-                            control={<Checkbox />}
+                            control={<Checkbox  />}
                             label={capitalizedAirlineName}
                           />
                         </FormGroup>
@@ -271,31 +312,36 @@ const Filter = (airlines) => {
                   <div className="checkbox">
                     <FormGroup>
                       <FormControlLabel
-                        control={<Checkbox />}
+                        control={<Checkbox checked={checked.Free_breakFast}
+                        onClick={() => handleCheckboxChange('Free_breakFast')}/>}
                         label="Free breakFast"
                       />
                     </FormGroup>
                     <FormGroup>
                       <FormControlLabel
-                        control={<Checkbox />}
+                        control={<Checkbox checked={checked.Free_parking}
+                        onClick={() => handleCheckboxChange('Free_parking')}/>}
                         label="Free parking"
                       />
                     </FormGroup>
                     <FormGroup>
                       <FormControlLabel
-                        control={<Checkbox />}
+                        control={<Checkbox checked={checked.Free_internet}
+                        onClick={() => handleCheckboxChange('Free_internet')}/>}
                         label="Free internet"
                       />
                     </FormGroup>
                     <FormGroup>
                       <FormControlLabel
-                        control={<Checkbox />}
+                        control={<Checkbox checked={checked.Free_airport_shuttle}
+                        onClick={() => handleCheckboxChange('Free_airport_shuttle')}/>}
                         label="Free airport shuttle"
                       />
                     </FormGroup>
                     <FormGroup>
                       <FormControlLabel
-                        control={<Checkbox />}
+                        control={<Checkbox checked={checked.Free_cancellation}
+                        onClick={() => handleCheckboxChange('Free_cancellation')}/>}
                         label="Free cancellation"
                       />
                     </FormGroup>
@@ -322,31 +368,39 @@ const Filter = (airlines) => {
                   <div className="checkbox">
                     <FormGroup>
                       <FormControlLabel
-                        control={<Checkbox />}
-                        label="24hr front desk"
+                        control={<Checkbox checked={checked.front_desk}
+                        onClick={() => handleCheckboxChange('front_desk')}/>}
+                        label="front desk"
                       />
                     </FormGroup>
                     <FormGroup>
                       <FormControlLabel
-                        control={<Checkbox />}
-                        label="Air-conditioned"
+                        control={<Checkbox checked={checked.Air_conditioned}
+                        onClick={() => handleCheckboxChange('Air_conditioned')} />}
+                        label="Air_conditioned"
                       />
                     </FormGroup>
                     <FormGroup>
                       <FormControlLabel
-                        control={<Checkbox />}
+                        control={<Checkbox checked={checked.Fitness}
+                        onClick={() => handleCheckboxChange('Fitness')}/>}
                         label="Fitness"
                       />
                     </FormGroup>
                     <FormGroup>
-                      <FormControlLabel control={<Checkbox />} label="pool" />
+                      <FormControlLabel control={<Checkbox checked={checked.pool}
+                        onClick={() => handleCheckboxChange('pool')}/>} label="pool" />
                     </FormGroup>
 
                     {showMoreAmenities && (
                       <>
                         <FormGroup>
                           <FormControlLabel
-                            control={<Checkbox />}
+                            control={ <Checkbox
+                              checked={checked.MULTILINGUAL_STAFF}
+                              onClick={() => handleCheckboxChange('MULTILINGUAL_STAFF')}
+                            />
+                          }
                             label="MULTILINGUAL_STAFF"
                           />
                         </FormGroup>
@@ -487,21 +541,7 @@ const Filter = (airlines) => {
               </Box>
             </>
           )}
-          {/* <Button
-            style={{
-              color: "white",
-              background: "#112211",
-              textTransform: "none",
-              width: "4rem",
-              height: "2rem",
-              borderRadius: "8px",
-              border: "none",
-            }}
-            variant="contained"
-            onClick={resetFilters}
-          >
-            Reset
-          </Button> */}
+          
         </Grid>
       </Container>
     </Wrapper>
