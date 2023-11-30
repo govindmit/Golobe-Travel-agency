@@ -124,37 +124,48 @@ const cityData = [
 ];
 
 const BookingForm = (props) => {
-  const departureValue = props.fromValue;
   const setDepartureValue = props.setFromValue;
-  const destinationValue = props.toValue;
   const setDestinationValue = props.setToValue;
 
-  const extractCityCode = (value) => {
-    const match = value.match(/\(([^)]+)\)/); // Use regex to extract text inside parentheses
-    return match ? match[1] : ""; // Extract the text inside parentheses
+  const [departureName, setDepartureName] = useState("");
+  const [destinationName, setDestinationName] = useState("");
+
+  const handleDepartureChange = (event, newValue) => {
+    setDepartureName(newValue); // Set city name for display
+    const cityCode = getCityCodeByName(newValue);
+    setDepartureValue(cityCode); // Set city code for API
   };
+
+  const handleDestinationChange = (event, newValue) => {
+    setDestinationName(newValue); // Set city name for display
+    const cityCode = getCityCodeByName(newValue);
+    setDestinationValue(cityCode); // Set city code for API
+  };
+
+  const getCityCodeByName = (cityName) => {
+    const city = cityData.find((c) => c.city === cityName);
+    return city ? city.cityCode : "";
+  };
+
+  // Use departureValue and destinationValue for API calls in the parent component
 
   return (
     <Wrapper>
       <div className="booking-form-container">
         <div className="autocomplete-container">
           <Autocomplete
-            value={departureValue}
-            onChange={(event, newValue) => {
-              setDepartureValue(extractCityCode(newValue));
-            }}
-            options={cityData.map((city) => `${city.city} (${city.cityCode})`)}
+            value={departureName}
+            onChange={handleDepartureChange}
+            options={cityData.map((city) => city.city)} // Display city names
             renderInput={(params) => <TextField {...params} label="From" variant="filled" />}
           />
         </div>
         <div className="dash">-</div>
         <div className="autocomplete-container">
           <Autocomplete
-            value={destinationValue}
-            onChange={(event, newValue) => {
-              setDestinationValue(extractCityCode(newValue));
-            }}
-            options={cityData.map((city) => `${city.city} (${city.cityCode})`)}
+            value={destinationName}
+            onChange={handleDestinationChange}
+            options={cityData.map((city) => city.city)} // Display city names
             renderInput={(params) => <TextField {...params} label="To" variant="filled" />}
           />
         </div>

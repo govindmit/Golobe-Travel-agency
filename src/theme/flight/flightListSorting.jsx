@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import Wrapper from "../../assets/wrapper/flightListSorting";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const FlightListSorting = () => {
+const FlightListSorting = ({totalFlights}) => {
   const [toggleIcon, setToggleIcon] = useState(true);
   const toggle = () => {
     setToggleIcon(!toggleIcon);
@@ -43,7 +43,7 @@ const FlightListSorting = () => {
               <Typography
                 style={{ marginLeft: "0.5rem", fontFamily: "system-ui" }}
               >
-                showing 4 of
+                showing {(totalFlights>4)?4:totalFlights} of
               </Typography>
               <Typography
                 style={{
@@ -52,7 +52,7 @@ const FlightListSorting = () => {
                   fontSize: "1rem",
                 }}
               >
-                257 places
+                {totalFlights?totalFlights:0}places
               </Typography>
             </div>
             <div style={{ display: "flex" }}>

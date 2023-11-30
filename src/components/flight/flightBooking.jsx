@@ -21,7 +21,8 @@ const airlineData = [
 const FlightListing = () => {
   const location = useLocation();
   const flightData = location.state?.flightData || {};
-  console.log(flightData, "dta");
+  console.log(flightData)
+  const totalFlights=flightData[0].airlineDetail?.length
   return (
     <>
       <div style={{ background: "#FAFBFC" }}>
@@ -33,7 +34,7 @@ const FlightListing = () => {
               <Filter airlines={flightData?.airlines || airlineData} />
             </Grid>
             <Grid item xs={6}>
-              <FlightListSorting />
+              <FlightListSorting totalFlights={totalFlights}/>
             </Grid>
           </Grid>
         </div>
