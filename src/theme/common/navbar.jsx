@@ -57,14 +57,14 @@ const Navbar = ({ isHomePage}) => {
   return (
     <Wrapper>
       <AppBar
-        sx={{ ...navbarStyles, ...mediaQueryStyles, position: "absolute" }}
+        sx={{ ...navbarStyles, ...mediaQueryStyles, position: "absolute", }}
       >
         <Toolbar sx={{ marginLeft: isHomePage ? "2rem" : "4rem" }}>
           <div style={{ display: "flex" }}>
             
             <Box style={{ display: "flex" }}>
               <IoAirplaneSharp style={{ ...iconStyles }} />
-              <Typography
+              <Typography style={{cursor:"pointer"}}
                 className={`navbar-text ${flight ? "active" : ""}`}
                 onClick={() => handleFlight()}
               >
@@ -76,13 +76,13 @@ const Navbar = ({ isHomePage}) => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                marginLeft: "40px",
+                marginLeft: "25px",
              
               }}
             >
               <IoBed style={{ ...iconStyles }} />
 
-              <Typography
+              <Typography style={{cursor:"pointer"}}
                 className={`navbar-text ${hotel ? "active" : ""}`}
                 onClick={() => handleHotel()}
               >
@@ -92,7 +92,7 @@ const Navbar = ({ isHomePage}) => {
           </div>
           <div>
             <img
-              style={{ marginLeft: "400px", marginTop: "10px" }}
+              style={{ marginLeft: "315px", marginTop: "10px" }}
               src={Group}
               alt="group"
             />

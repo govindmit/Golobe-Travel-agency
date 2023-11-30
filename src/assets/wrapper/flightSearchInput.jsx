@@ -1,18 +1,6 @@
 import { styled } from "styled-components";
 
 const Wrapper = styled.div`
-  width: 92%;
-  margin: 0px;
-  height: 100%;
-  background: white;
-  /* box-shadow: 0px 4px 16px rgba(141, 211, 187, 0.15); */
-  .card {
-    position: relative;
-    bottom: 90px;
-    padding: 4px;
-    border-radius: 16px;
-    left: 50px;
-  }
   .buttonStyles {
     color: black;
     padding: 12px;
@@ -67,14 +55,14 @@ const Wrapper = styled.div`
     font-weight: 600;
     word-wrap: break-word;
   }
-  .calender-view{
+  .calender-view {
     display: flex;
     position: relative;
     top: 3%;
     right: 24%;
     height: 160px;
     z-index: 1000;
- 
+    /* bottom: 59%; */
     gap: 4px;
   }
 `;

@@ -3,12 +3,16 @@ import Wrapper from "../../../assets/wrapper/AddCardWrapper";
 import { Card, Typography, Button, Container, Box, Radio } from "@mui/material";
 import visaicon from "../../../assets/images/visaicon.svg";
 import addicon from "../../../assets/images/addicon.png";
+import Navbar from "../../common/navbar";
+import HotelBooking from "./hotelBooking";
 
 const AddCard = () => {
   
   const data = "**** 4321 02/27";
   return (
     <Wrapper>
+      <Navbar/>
+     
       <Container>
         <Card className="card">
           <Box>

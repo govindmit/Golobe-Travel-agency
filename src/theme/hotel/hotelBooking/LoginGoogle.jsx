@@ -1,13 +1,9 @@
 import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
-// import googleicon from "../../assets/images/googleicon.svg";
 import { Button } from "@mui/material";
 import Wrapper from "../../../assets/wrapper/LoginCardWrapper";
 import {jwtDecode} from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
-import AddCard from "./AddCard";
-
-
 
 const LoginGoogle = () => {
     const navigate= useNavigate()
@@ -31,8 +27,3 @@ const LoginGoogle = () => {
 };
 
 export default LoginGoogle;
-{
-  /* <Button className="btn" variant="outlined">
-        <img src={googleicon} alt="Google Icon" />
-      </Button> */
-}

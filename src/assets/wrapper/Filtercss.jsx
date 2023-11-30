@@ -25,8 +25,8 @@ const Wrapper = styled.section`
     background-color: transparent;
   }
   .box-div {
-    border-bottom: 2px solid whitesmoke;
-    height: 8rem;
+   
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,25 +42,28 @@ const Wrapper = styled.section`
     background-color: transparent;
     position: absolute;
     left: 17.5rem;
+    
   }
-  .rating-btn {
-    padding: 4px 14px 9px 12px;
-    width: 40px;
-    height: 32px;
-    background: transparent;
-    border-radius: 3px;
-    border: 1px solid #8dd3bb;
-  }
+  
   .second-box {
     height: 4rem;
     width: 15rem;
     display: flex;
     justify-content: inherit;
   }
+  button {
+    padding: 4px 14px 9px 12px;
+    height: 32px;
+    width: 40px;
+    margin-top: 15px;
+ border-color: #8dd3bb;
+    background: transparent;
+    border-radius: 3px;
+    opacity: 0.8;
+}
   .third-box {
     height: auto;
-    /* border-bottom:2px solid whitesmoke; */
-    margin-top: 20px;
+   margin-top: 20px;
     color: #112211;
   }
   .checkbox {
@@ -68,9 +71,8 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    position: relative;
-    left: 2rem;
+     /* position: absolute;
+    left: 2rem; */
   }
   .checkbox {
     span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root {
@@ -86,5 +88,11 @@ const Wrapper = styled.section`
     color: #ff8682;
     background: transparent;
   }
+  .selected{
+    background: #112211;
+    color:"white";
+  }
+ 
+  
 `;
 export default Wrapper;

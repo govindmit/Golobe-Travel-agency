@@ -7,9 +7,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 const BoxStyle = ({ hotelDataLength }) => {
   const [selectedBox, setSelectedBox] = useState(null);
   const [toggleIcon, setToggleIcon] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
+
 
   const toggle = () => {
     setToggleIcon(!toggleIcon);
+    setShowDropdown(!showDropdown);
   };
 
   const handleBoxClick = (box) => {
@@ -26,7 +29,7 @@ const BoxStyle = ({ hotelDataLength }) => {
               onClick={() => handleBoxClick("hotels")}
               sx={{ borderRight: "1px solid #ccc" }}
             >
-              <Typography className="text">Hotels</Typography>
+              <Typography className="text" >Hotels</Typography>
               <Typography className="text2">257 places</Typography>
             </Box>
 
@@ -85,8 +88,27 @@ const BoxStyle = ({ hotelDataLength }) => {
               >
                 {toggleIcon ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </button>
-            </div>
-          </div>
+              {showDropdown && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '2rem',
+            right: 0,
+            width: '150px',
+            padding: '10px',
+            background: '#fff',
+            boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)',
+            zIndex: 1,
+          }}
+        >
+         
+          <div>Bosphorus Hotel Istanbul</div>
+          <div>Aqua Belek Turkey</div>
+          <div>Shangrila sydney</div>
+        </div>
+      )}
+    </div>
+    </div>
         </Grid>
       </Container>
     </Wrapper>
