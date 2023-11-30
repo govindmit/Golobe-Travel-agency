@@ -11,21 +11,21 @@ import AddCard from "../theme/hotel/hotelBooking/AddCard";
 
 const AppRoute = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/" element={<Home />} />
-      <Route path="/flight" element={<FlightLanding />} />;
-      <Route path="/flight-list" element={<FlightListing />} />;
-
-
-      {/* HOTELS ---- Routing */}
-      <Route path="/hotel" element={<HotelPage />} />
-      <Route path="/hotel-search" element={<SearchPage />} />
-      <Route path="/hotel-detail" element={<HotelDetailsPage />} />
-      <Route path="/hotel-Booking" element={<HotelBookingPage />} />
-      <Route path="/hotel" element={<LoginCard />} />
-      <Route path="/add-card" element={<AddCard />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/flight" element={<FlightLanding />} />;
+        <Route path="/flight-list" element={<FlightListing />} />;
+        {/* HOTELS ---- Routing */}
+        <Route path="/hotel" element={<HotelPage />} />
+        <Route path="/hotel-search" element={<SearchPage />} />
+        <Route path="/hotel-detail" element={<HotelDetailsPage />} />
+        <Route path="/hotel-Booking" element={<HotelBookingPage />} />
+        <Route path="/hotel" element={<LoginCard />} />
+        <Route path="/add-card" element={<AddCard />} />
+      </Routes>
+    </>
   );
 };
 

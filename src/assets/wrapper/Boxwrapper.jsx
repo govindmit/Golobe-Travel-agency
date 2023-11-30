@@ -1,9 +1,9 @@
 import styled from "styled-components";
 const Wrapper = styled.section`
   position: relative;
-  right: 16rem;
+  right: 15rem;
   width: 135%;
-  top: 40px;
+  top: 120px;
   .card {
     display: flex;
     flex-direction: row;

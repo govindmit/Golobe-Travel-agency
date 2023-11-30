@@ -4,7 +4,7 @@ const Wrapper = styled.section`
   width: 343px;
   height: auto;
   padding-bottom: 5rem;
-  top: 17rem;
+  top: 14rem;
   left: 50px;
   position: absolute;
   .filter {

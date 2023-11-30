@@ -6,15 +6,25 @@ import Filter from "../../theme/common/Filter";
 import BoxStyle from "../../theme/common/BoxStyle";
 import Fotter from "../../theme/common/Fotter";
 import { useLocation, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHotelContext } from "../../context/HotelContext";
-import { FindHotelByCity, getAccessToken } from "../../api/hotel/HotelInfo";
+import {
+  FindHotelByCity,
+  fetchAccessToken,
+  getAccessToken,
+} from "../../api/hotel/HotelInfo";
 
 const SearchPage = () => {
   const location = useLocation();
+  const [hotelDataLength, setHotelDataLength] = useState(null);
   const queryParams = new URLSearchParams(location.search);
   const cityCode = queryParams.get("cityCode");
   const { setIds } = useHotelContext();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    fetchAccessToken();
+  });
 
   useEffect(() => {
     getAccessToken().then((res) => {
@@ -32,6 +42,7 @@ const SearchPage = () => {
                 }
               }
               setIds(hotelIds);
+              setIsLoading(true);
             } else {
               console.error("Invalid data format returned by API");
             }
@@ -40,30 +51,32 @@ const SearchPage = () => {
             console.log(err);
           });
       } else {
-        console.error(
-          "City code not available for the destination:",
-          destination
-        );
+        console.error("City code not available for the destination:");
       }
     });
-  }, []);
+  }, [cityCode]);
 
   return (
     <>
       <div style={{ background: "#FAFBFC" }}>
         <Navbar />
         <HotelBookingPage />
-        <div>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Filter />
+        {isLoading && (
+          <div>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <Filter />
+              </Grid>
+              <Grid item xs={6}>
+                {hotelDataLength && <BoxStyle hotelDataLength={hotelDataLength}/>}
+              </Grid>
+              <Grid>
+                <HotelList setHotelDataLength={setHotelDataLength}/>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <BoxStyle />
-            </Grid>
-          </Grid>
-        </div>
-        <HotelList />
+          </div>
+        )}
+
         <Fotter />
       </div>
     </>

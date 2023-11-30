@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   margin: 0px;
   height: 100%;
   background: white;
-  box-shadow: 0px 4px 16px rgba(141, 211, 187, 0.15);
+  /* box-shadow: 0px 4px 16px rgba(141, 211, 187, 0.15); */
   .card {
     position: relative;
     bottom: 90px;

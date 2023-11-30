@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-margin-top: 40px;
+  margin-top: 40px;
   display: flex;
   flex-direction: row;
+  margin-bottom: 25px;
 
   .image {
     width: 560px;

@@ -8,7 +8,6 @@ import { IoAirplaneSharp, IoBed } from "react-icons/io5";
 import BookingInput from "./bookingInput";
 import Wrapper from "../../assets/wrapper/bookingSearch";
 import HotelInput from "../hotel/HotelInput";
-import ButtonTitle from "./buttonTitle";
 
 export default function BookingCard() {
   const [isStayPage, setIsStayPage] = React.useState(false);

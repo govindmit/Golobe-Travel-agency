@@ -16,22 +16,16 @@ const Wrapper = styled.aside`
     display: inline-flex;
     margin-top: 50px;
   }
-  /* .rev-nav {
-    width: 1150px;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 24px;
-    display: inline-flex;
-  } */
+
   .rev-div {
-    flex: 1 1 0;
+    /* flex: 1 1 0; */
     align-self: stretch;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    /* justify-content: flex-start; */
+    /* align-items: flex-start; */
     gap: 16px;
     display: inline-flex;
-    margin-left: 20px;
+    /* margin-left: 20px; */
   }
   .review {
     align-self: stretch;
@@ -43,7 +37,7 @@ const Wrapper = styled.aside`
     word-wrap: break-word;
   }
   .rev-title {
-    width: 851px;
+    /* width: 851px; */
     color: black;
     font-size: 16px;
     font-family: "Montserrat";
@@ -51,25 +45,26 @@ const Wrapper = styled.aside`
     word-wrap: break-word;
   }
   .btn-div {
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: flex-start;
     align-items: flex-start;
     gap: 10px;
     display: inline-flex;
-    margin-left: 75px;
+    /* margin-left: 75px; */
   }
   .btn-center {
-    height: 20px;
-    padding-left: 16px;
+    margin-top: 25px;
+    /* height: 20px; */
+    /* padding-left: 16px;
     padding-right: 16px;
     padding-top: 8px;
-    padding-bottom: 8px;
+    padding-bottom: 8px; */
     border-radius: 4px;
     border: 1px #8dd3bb solid;
-    justify-content: center;
+    /* justify-content: center;
     align-items: center;
     gap: 4px;
-    display: inline-flex;
+    display: inline-flex; */
   }
   .btn-text {
     color: #112211;
@@ -101,7 +96,7 @@ const Wrapper = styled.aside`
       content: "";
       display: block;
       position: relative;
-      top:15px ;
+      top: 15px;
       width: 100%;
       height: 5px;
       background-color: #8dd3bb;

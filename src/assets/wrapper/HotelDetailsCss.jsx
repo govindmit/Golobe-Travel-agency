@@ -153,6 +153,7 @@ const Wrapper = styled.section`
   }
 
   .img-container {
+    cursor: pointer;
     width: 100%;
     justify-content: flex-start;
     align-items: flex-start;
@@ -372,6 +373,7 @@ const Wrapper = styled.section`
     margin-bottom: 20px;
   }
   .ht-li-img {
+    cursor: pointer;
     width: 48px;
     height: 48px;
     background: linear-gradient(0deg, #d9d9d9 0%, #d9d9d9 100%);
@@ -414,6 +416,9 @@ const Wrapper = styled.section`
     font-size: 14px;
     font-family: "Montserrat";
     font-weight: 600;
+  }
+  .ht-li-btn:hover {
+    background: #8dd3bb;
   }
 `;
 
