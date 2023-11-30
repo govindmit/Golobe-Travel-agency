@@ -39,12 +39,12 @@ const data = [
 const Reviews = () => {
   return (
     <Wrapper>
+      <ContentTitle
+        title="Reviews"
+        desc="What people says about Golobe facilities"
+        btn="see all"
+      />
       <div className="main-div">
-        <ContentTitle
-          title="Reviews"
-          desc="What people says about Golobe facilities"
-          btn="see all"
-        />
         <Grid container spacing={3}>
           {data.map((value) => (
             <ReviewCard key={value.id} {...value} />

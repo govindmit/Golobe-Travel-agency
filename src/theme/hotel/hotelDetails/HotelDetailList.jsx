@@ -1,8 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
-import HotelImageList1 from "../../../assets/images/hotel-detail-img/hotel2.jpeg";
-import HotelImageList2 from "../../../assets/images/hotel-detail-img/hotel3.jpeg";
-import HotelImageList3 from "../../../assets/images/hotel-detail-img/hotel4.jpeg";
-import HotelImageList4 from "../../../assets/images/hotel-detail-img/hotel5.jpeg";
+import HotelImageList1 from "../../../assets/images/hotel-detail-img/hotel2.png";
+import HotelImageList2 from "../../../assets/images/hotel-detail-img/hotel3.png";
+import HotelImageList3 from "../../../assets/images/hotel-detail-img/hotel4.png";
+import HotelImageList4 from "../../../assets/images/hotel-detail-img/hotel5.png";
 import { useNavigate } from "react-router-dom";
 
 const HotelDetailList = () => {

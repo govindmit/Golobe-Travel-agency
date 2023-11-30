@@ -5,12 +5,11 @@ const HotelImageCard = ({ src }) => {
   return (
     <>
       <Wrapper>
-        <Container>
-          <Box className="image-box">
-            <img className="list-image" src={src} />
-            <Box className="small-div">9 Images</Box>
-          </Box>
-        </Container>
+        {/* <Grid className="image-box"> */}
+        <Grid>
+          <img className="list-image" src={src} />
+          <Box className="small-div">9 Images</Box>
+        </Grid>
       </Wrapper>
     </>
   );

@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   }
   .list-image {
     position: relative;
-    left: 345px;
+    left: 27rem;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     width: 300px;
@@ -21,8 +21,10 @@ const Wrapper = styled.div`
   }
   .small-div {
     position: relative;
-    top: 10px;
-    left: 48%;
+    /* top: 10px; */
+    width: 7%;
+    bottom: 18rem;
+    left: 103%;
     padding: 4px 8px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 4px;
@@ -33,8 +35,8 @@ const Wrapper = styled.div`
 
   .Container-Box {
     position: relative;
-    left: 75px;
-    width: 75%;
+    left: 91px;
+    width: 74%;
     padding: 15px;
     background: white;
     border-top-left-radius: 12px;
@@ -140,6 +142,7 @@ const Wrapper = styled.div`
     border: 1px #8dd3bb solid;
     align-items: center;
     display: flex;
+    cursor: default;
   }
   .rating-span {
     color: #112211;
@@ -209,6 +212,7 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     display: flex;
+    cursor: pointer;
   }
   .place-box {
     flex: 1 1 0px;
@@ -232,6 +236,9 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 4px;
     display: flex;
+  }
+  .place-btn:hover {
+    background: #8dd3bb;
   }
 `;
 export default Wrapper;

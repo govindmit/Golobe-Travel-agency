@@ -2,15 +2,20 @@ import React from "react";
 import Wrapper from "../../assets/wrapper/Reviews";
 import { Button, CardContent, Container, Typography } from "@mui/material";
 
-const ContentTitle = ({title,desc,btn}) => {
+const ContentTitle = ({ title, desc, btn }) => {
   return (
     <Wrapper>
-      <Container>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <CardContent className="rev-div">
           <div className="review">{title}</div>
 
           <Typography className="rev-title" variant="h5" component="div">
-          {desc}
+            {desc}
           </Typography>
         </CardContent>
 

@@ -2,42 +2,45 @@ import React, { useEffect, useState } from "react";
 import {
   Grid,
   TextField,
-  Container,
   Autocomplete,
   Modal,
   Typography,
   Button,
+  Box,
 } from "@mui/material";
 import BedIcon from "@mui/icons-material/Bed";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PersonIcon from "@mui/icons-material/Person";
-import {
-  FindHotelByCity,
-  fetchAccessToken,
-  getAccessToken,
-} from "../../api/hotel/HotelInfo";
+import { fetchAccessToken } from "../../api/hotel/HotelInfo";
 import { data } from "../../data";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
-import { useHotelContext } from "../../context/HotelContext";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import AddIcon from "@mui/icons-material/Add";
 import NearMeIcon from "@mui/icons-material/NearMe";
 import { toast } from "react-toastify";
+import dayjs from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const HotelInput = ({ btn }) => {
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
-  const [roomsGuests, setRoomsGuests] = useState("");
-  const [cityMappings, setCityMappings] = useState(data);
+  const [roomsGuests, setRoomsGuests] = useState("1 Room, 1 Guest");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [destinationError, setDestinationError] = useState("");
+  const [checkInDateError, setCheckInDateError] = useState("");
+  const [checkOutDateError, setCheckOutDateError] = useState("");
+
+  const today = dayjs();
+  const yesterday = dayjs().subtract(1, "day");
   const [modalData, setModalData] = useState({
-    rooms: 0,
-    adults: 0,
+    rooms: 1,
+    adults: 1,
     children: 0,
   });
   const handleModalOpen = () => {
@@ -58,11 +61,38 @@ const HotelInput = ({ btn }) => {
   };
 
   useEffect(() => {
-    fetchAccessToken();
-  }, []);
+    localStorage.setItem("destination", destination);
+    localStorage.setItem("checkInDate", checkInDate);
+    localStorage.setItem("checkOutDate", checkOutDate);
+    localStorage.setItem("roomsGuests", roomsGuests);
+  }, [destination, checkInDate, checkOutDate, roomsGuests]);
 
   const handleSearch = () => {
-    navigate(`/hotel-search?cityCode=${destination}`);
+    let isValid = true;
+    if (!destination) {
+      setDestinationError("Please enter a destination.");
+      isValid = false;
+    } else {
+      setDestinationError("");
+    }
+
+    if (!checkInDate) {
+      setCheckInDateError("Please select a check-in date.");
+      isValid = false;
+    } else {
+      setCheckInDateError("");
+    }
+
+    if (!checkOutDate) {
+      setCheckOutDateError("Please select a check-out date.");
+      isValid = false;
+    } else {
+      setCheckOutDateError("");
+    }
+
+    if (isValid) {
+      navigate(`/hotel-search?cityCode=${destination}`);
+    }
   };
 
   return (
@@ -78,25 +108,30 @@ const HotelInput = ({ btn }) => {
       >
         <Grid item xs={4}>
           <Autocomplete
-            disableClearable
-            options={cityMappings.map((option) => ({
-              label: `${option.label} (${option.code})`,
-              value: option.label,
-              code: option.code,
-            }))}
+            defaultValue
+            options={data}
+            autoHighlight
             getOptionLabel={(option) => option.label || ""}
-            value={
-              cityMappings.find((option) => option.code === destination) || null
-            }
-            onChange={(e, newValue) => setDestination(newValue.code)}
+            renderOption={(props, option) => (
+              <Box component="li" {...props}>
+                {option.label}({option.code})
+              </Box>
+            )}
+            value={data.find((option) => option.code === destination) || null}
+            onChange={(e, newValue) => {
+              setDestination(newValue ? newValue.code : null);
+              setDestinationError("");
+            }}
             renderInput={(params) => (
               <TextField
                 {...params}
                 label="Enter Destination"
                 placeholder="Istanbul, Turkey"
+                required
                 InputProps={{
                   ...params.InputProps,
-                  type: "search",
+                  autoComplete: "new-password",
+
                   startAdornment: (
                     <BedIcon style={{ cursor: "pointer", marginRight: 20 }} />
                   ),
@@ -104,13 +139,24 @@ const HotelInput = ({ btn }) => {
               />
             )}
           />
+
+          {destinationError && (
+            <Typography color="error" variant="caption" gutterBottom>
+              {destinationError}
+            </Typography>
+          )}
         </Grid>
 
         <Grid item xs={2}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
+              defaultValue={yesterday}
+              disablePast
               value={checkInDate}
-              onChange={(newDate) => setCheckInDate(newDate)}
+              onChange={(newDate) => {
+                setCheckInDate(newDate);
+                setCheckInDateError("");
+              }}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -125,10 +171,18 @@ const HotelInput = ({ btn }) => {
               )}
             />
           </LocalizationProvider>
+          {checkInDateError && (
+            <Typography color="error" variant="caption" gutterBottom>
+              {checkInDateError}
+            </Typography>
+          )}
         </Grid>
+
         <Grid item xs={2}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              defaultValue={today}
+              disablePast
               value={checkOutDate}
               onChange={(newDate) => {
                 if (newDate <= checkInDate) {
@@ -136,6 +190,7 @@ const HotelInput = ({ btn }) => {
                   setCheckOutDate(null);
                 } else {
                   setCheckOutDate(newDate);
+                  setCheckOutDateError("");
                 }
               }}
               renderInput={(params) => (
@@ -152,6 +207,11 @@ const HotelInput = ({ btn }) => {
               )}
             />
           </LocalizationProvider>
+          {checkOutDateError && (
+            <Typography color="error" variant="caption" gutterBottom>
+              {checkOutDateError}
+            </Typography>
+          )}
         </Grid>
 
         <Grid item xs={3}>
@@ -191,7 +251,7 @@ const HotelInput = ({ btn }) => {
               onChange={(e) =>
                 setModalData({
                   ...modalData,
-                  rooms: Math.max(0, e.target.value),
+                  rooms: Math.max(1, e.target.value),
                 })
               }
               fullWidth
@@ -204,7 +264,7 @@ const HotelInput = ({ btn }) => {
               onChange={(e) =>
                 setModalData({
                   ...modalData,
-                  adults: Math.max(0, e.target.value),
+                  adults: Math.max(1, e.target.value),
                 })
               }
               fullWidth

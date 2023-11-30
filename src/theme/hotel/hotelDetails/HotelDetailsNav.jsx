@@ -1,7 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Wrapper from "../../../assets/wrapper/HotelDetailsCss";
-const HotelDetailsNav = () => {
+const HotelDetailsNav = ({ hotelName }) => {
+  console.log(hotelName);
   return (
     <>
       <Wrapper>
@@ -18,9 +19,7 @@ const HotelDetailsNav = () => {
             <ArrowForwardIosIcon className="icon-arrow" />
           </Typography>
 
-          <Typography className="hotel-name">
-            CVK Park Bosphorus Hotel Istanbul
-          </Typography>
+          <Typography className="hotel-name">{hotelName}</Typography>
         </Box>
       </Wrapper>
     </>

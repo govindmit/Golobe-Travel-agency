@@ -3,17 +3,13 @@ import { BsStarFill } from "react-icons/bs";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import HotelDetailImage1 from "../../../assets/images/hotel-detail-img/hotel1.jpeg";
-import HotelDetailImage2 from "../../../assets/images/hotel-detail-img/hotel2.jpeg";
-import HotelDetailImage3 from "../../../assets/images/hotel-detail-img/hotel3.jpeg";
-import HotelDetailImage4 from "../../../assets/images/hotel-detail-img/hotel4.jpeg";
-import HotelDetailImage5 from "../../../assets/images/hotel-detail-img/hotel5.jpeg";
-import { useLocation, useNavigate } from "react-router-dom";
+import HotelDetailImage1 from "../../../assets/images/hotel-detail-img/hotel1.png";
+import HotelDetailImage2 from "../../../assets/images/hotel-detail-img/hotel2.png";
+import HotelDetailImage3 from "../../../assets/images/hotel-detail-img/hotel3.png";
+import HotelDetailImage4 from "../../../assets/images/hotel-detail-img/hotel4.png";
+import HotelDetailImage5 from "../../../assets/images/hotel-detail-img/hotel5.png";
 
-const HotelDetailsImage = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  // const { hotelName, startingPrice } = location.state;
+const HotelDetailsImage = ({ hotelName }) => {
   const handleClick = () => {
     navigate("/hotel-booking");
   };
@@ -23,7 +19,7 @@ const HotelDetailsImage = () => {
       <Box className="hotel-info-div">
         <Box className="info-container">
           <div className="name-div">
-            <Typography className="ht-text">njdfjkghjkdfghjk</Typography>
+            <Typography className="ht-text">{hotelName}</Typography>
 
             {Array.from({ length: 5 }, (v, i) => (
               <div className="ht-star" key={i}>
@@ -45,7 +41,7 @@ const HotelDetailsImage = () => {
 
           <Box className="price-box">
             <Typography className="loc-btn">
-              <Button className="rating-btn">4.2</Button>
+              <div className="rating-btn">4.2</div>
             </Typography>
 
             <div>
@@ -58,8 +54,8 @@ const HotelDetailsImage = () => {
         <Box className="price-box-div">
           <div style={{ textAlign: "right" }}>
             <span className="pr-span" sx={{ fontSize: "30px" }}>
-              {/* {startingPrice} */}
-              54869547
+              {/* {`$${startingPrice}`} */}
+              5000
             </span>
             <span className="pr-span" sx={{ fontSize: "14px" }}>
               /night
@@ -74,7 +70,7 @@ const HotelDetailsImage = () => {
                   position: "relative",
                 }}
               >
-                <FavoriteIcon sx={{ height: "15px" }} />
+                <FavoriteIcon sx={{ height: "15px", cursor: "pointer" }} />
               </Typography>
             </Box>
 
@@ -85,7 +81,7 @@ const HotelDetailsImage = () => {
                   position: "relative",
                 }}
               >
-                <ShareIcon sx={{ height: "15px" }} />
+                <ShareIcon sx={{ height: "15px", cursor: "pointer" }} />
               </Typography>
             </Box>
 

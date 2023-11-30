@@ -4,7 +4,7 @@ import Wrapper from "../../assets/wrapper/Boxwrapper";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const BoxStyle = () => {
+const BoxStyle = ({ hotelDataLength }) => {
   const [selectedBox, setSelectedBox] = useState(null);
   const [toggleIcon, setToggleIcon] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -57,7 +57,7 @@ const BoxStyle = () => {
               <Typography
                 style={{ marginLeft: "0.5rem", fontFamily: "system-ui" }}
               >
-                showing 4 of
+                showing {hotelDataLength > 0 ? 4 : hotelDataLength} of
               </Typography>
               <Typography
                 style={{
@@ -66,7 +66,7 @@ const BoxStyle = () => {
                   fontSize: "1rem",
                 }}
               >
-                257 places
+                {hotelDataLength ? hotelDataLength : 0} places
               </Typography>
             </div>
             <div style={{ display: "flex" }}>
