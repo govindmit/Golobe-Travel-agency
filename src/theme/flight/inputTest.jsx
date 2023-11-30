@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Wrapper from "../../assets/wrapper/flightBookingInput";
-
-const destinations = [
-  "New York",
-  "Los Angeles",
-  "Chicago",
-  "San Francisco",
-  "Miami",
-];
-const departures = ["London", "Paris", "Berlin", "Rome", "Madrid"];
+// import { data } from "../../data";
 
 const cityData = [
   { city: "Delhi", cityCode: "DEL" },
@@ -130,40 +122,45 @@ const cityData = [
   { city: "Rome", cityCode: "FCO" },
   { city: "Shanghai", cityCode: "PVG" },
 ];
+
 const BookingForm = (props) => {
-    const departureValue = props.fromValue;
-    const setDepartureValue = props.setFromValue;
-    const destinationValue = props.toValue;
-    const setDestinationValue = props.setToValue;
-  
-    return (
-      <Wrapper>
-        <div className="booking-form-container">
-          <div className="autocomplete-container">
-            <Autocomplete
-              value={departureValue}
-              onChange={(event, newValue) => {
-                setDepartureValue(newValue ? newValue.split(" ")[1].slice(1, -1) : ""); // Extract cityCode without parentheses
-              }}
-              options={cityData.map((city) => `${city.city} (${city.cityCode})`)}
-              renderInput={(params) => <TextField {...params} variant="filled" />}
-            />
-          </div>
-          <div className="dash">-</div>
-          <div className="autocomplete-container">
-            <Autocomplete
-              value={destinationValue}
-              onChange={(event, newValue) => {
-                setDestinationValue(newValue ? newValue.split(" ")[1].slice(1, -1) : ""); // Extract cityCode without parentheses
-              }}
-              options={cityData.map((city) => `${city.city} (${city.cityCode})`)}
-              renderInput={(params) => <TextField {...params} variant="filled" />}
-            />
-          </div>
-        </div>
-      </Wrapper>
-    );
+  const departureValue = props.fromValue;
+  const setDepartureValue = props.setFromValue;
+  const destinationValue = props.toValue;
+  const setDestinationValue = props.setToValue;
+
+  const extractCityCode = (value) => {
+    const match = value.match(/\(([^)]+)\)/); // Use regex to extract text inside parentheses
+    return match ? match[1] : ""; // Extract the text inside parentheses
   };
-  
-  export default BookingForm;
-  
+
+  return (
+    <Wrapper>
+      <div className="booking-form-container">
+        <div className="autocomplete-container">
+          <Autocomplete
+            value={departureValue}
+            onChange={(event, newValue) => {
+              setDepartureValue(extractCityCode(newValue));
+            }}
+            options={cityData.map((city) => `${city.city} (${city.cityCode})`)}
+            renderInput={(params) => <TextField {...params} label="From" variant="filled" />}
+          />
+        </div>
+        <div className="dash">-</div>
+        <div className="autocomplete-container">
+          <Autocomplete
+            value={destinationValue}
+            onChange={(event, newValue) => {
+              setDestinationValue(extractCityCode(newValue));
+            }}
+            options={cityData.map((city) => `${city.city} (${city.cityCode})`)}
+            renderInput={(params) => <TextField {...params} label="To" variant="filled" />}
+          />
+        </div>
+      </div>
+    </Wrapper>
+  );
+};
+
+export default BookingForm;

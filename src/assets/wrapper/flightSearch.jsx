@@ -8,6 +8,7 @@ const Wrapper = styled.div`
     border-radius: 4px;
     margin: 20px 16px;
     border-width: 0px;
+    height: fit-content;
   }
   #container {
     height: 500px;
