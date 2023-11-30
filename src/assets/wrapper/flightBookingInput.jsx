@@ -12,12 +12,12 @@ const Wrapper = styled.section`
     display: flex;
     align-items: center;
     width: fit-content;
-    border: 2px solid;
+    border: 2px solid #8dd3bb;
     border-radius: 8px;
   }
 
   .autocomplete-container {
-    width: 140px    ; /* Set the width as needed */
+    width: 176px    ; /* Set the width as needed */
     margin: auto;
   }
 

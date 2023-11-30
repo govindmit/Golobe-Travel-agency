@@ -4,7 +4,7 @@ import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 
 import AddIcon from "@mui/icons-material/Add";
 import NearMeIcon from "@mui/icons-material/NearMe";
-import { Button, Grid, MenuItem, Typography } from "@mui/material";
+import { Button, Grid, MenuItem, Modal, Select, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { FlightOfferSearch } from "../../api/flight/flightinfo";
 import { getAccessToken } from "../../api/hotel/HotelInfo";
@@ -14,6 +14,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import BookingForm from "../flight/inputTest";
+import Wrapper from "../../assets/wrapper/flightSearchInput";
 const trip = [
   {
     id: 1,
@@ -40,6 +41,11 @@ function BookingInput({ btn }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState({
+    adults: 1,
+    class: "Economy",
+  });
 
   const formatDate = (date) => moment(date).format("YYYY-MM-DD");
   const formatPlaceholderDate = (date) => moment(date).format("DD MMM YY");
@@ -55,20 +61,26 @@ function BookingInput({ btn }) {
     setShowCalendar(false);
   };
 
-  const navigate = useNavigate();
-
-  const handlePassengerInputChange = (e) => {
-    setPassengerInputValue(e.target.value);
-    const parts = e.target.value.split("," || "-");
-    if (parts.length === 2) {
-      setPassenger(parts[0].trim());
-      setClassType(parts[1].trim());
-    } else {
-      setPassenger("");
-      setClassType("");
-    }
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
   };
 
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalSubmit = () => {
+    setPassengerInputValue(
+      `${
+        parseInt(modalData.adults, 10) +','+ (modalData.class)
+      } `
+    );
+    setPassenger(modalData.adults)
+    setClassType(modalData.class)
+    handleModalClose();
+  };
+  const navigate = useNavigate();
+  const today = new Date();
   const showFlights = () => {
     getAccessToken()
       .then((res) => {
@@ -104,11 +116,11 @@ function BookingInput({ btn }) {
       });
   };
 
+  
   return (
-    <>
+    <Wrapper>
       <Grid container spacing={2} className="flight-search-input">
-        <Grid item xs={3}>
-
+        <Grid item xs={4}>
           <BookingForm
             fromValue={fromValue}
             toValue={toValue}
@@ -132,58 +144,120 @@ function BookingInput({ btn }) {
             ))}
           </TextField>
         </Grid>
+
         <Grid item xs={3}>
-          <TextField
-            className="from-to-input"
-            label="Depart- Return"
-            onFocus={() => setShowCalendar(true)}
-            value={
-              startDate && endDate
-                ? `${formatPlaceholderDate(
-                    startDate
-                  )} - ${formatPlaceholderDate(endDate)}`
-                : ""
-            }
-            readOnly
+      <TextField
+        className="from-to-input"
+        label="Depart- Return"
+        onFocus={() => setShowCalendar(true)}
+        value={
+          startDate && endDate
+            ? `${formatPlaceholderDate(startDate)} - ${formatPlaceholderDate(
+                endDate
+              )}`
+            : ''
+        }
+        readOnly
+      />
+      {showCalendar && (
+        <div className="calender-view">
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            startDate={startDate}
+            endDate={endDate}
+            selectsStart
+            inline
+            minDate={today}
           />
-          {showCalendar && (
-            <div className="calender-view">
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                startDate={startDate}
-                endDate={endDate}
-                selectsStart
-                inline
-              />
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => {
-                  setEndDate(date);
-                  handleDateChange(startDate, date);
-                }}
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                selectsEnd
-                inline
-              />
-            </div>
-          )}
-        </Grid>
-        <Grid item xs={3}>
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => {
+              setEndDate(date);
+              handleDateChange(startDate, date);
+            }}
+            startDate={startDate}
+            endDate={endDate}
+            minDate={startDate || today}
+            selectsEnd
+            inline
+          />
+        </div>
+      )}
+    </Grid>
+        <Grid item xs={2}>
           <TextField
             className="from-to-input"
             label=" Passenger - Class"
             value={passengerInputValue}
-            onChange={handlePassengerInputChange}
+            // onChange={handlePassengerInputChange}
+            onClick={handleModalOpen}
             variant="outlined"
             fullWidth
             placeholder={`${passenger} , ${classType}`}
             defaultValue={`${passenger} , ${classType}`}
           />
         </Grid>
-        
+
+        <Modal open={isModalOpen} onClose={handleModalClose}>
+      <div
+        style={{
+          padding: 16,
+          maxWidth: "25%",
+          margin: "auto",
+          position: "absolute",
+          top: "14rem",
+          right: "4rem",
+          background: "Whitesmoke",
+        }}
+      >
+        <Typography variant="h6" gutterBottom>
+          Select Rooms & Guests
+        </Typography>
+        <TextField
+          label="Adults"
+          type="number"
+          value={modalData.adults}
+          onChange={(e) =>
+            setModalData({
+              ...modalData,
+              adults:Math.min(9, Math.max(1, e.target.value)),
+            })
+          }
+          fullWidth
+          margin="normal"
+        />
+        {/* Replace TextField with Select */}
+        <Select
+          label="Class"
+          value={modalData.class}
+          onChange={(e) =>
+            setModalData({
+              ...modalData,
+              class: e.target.value,
+            })
+          }
+          fullWidth
+          margin="normal"
+        >
+          {/* Add MenuItem options for each class */}
+          <MenuItem value="Economy">Economy</MenuItem>
+          <MenuItem value="PremiumEconomy">Premium Economy</MenuItem>
+          <MenuItem value="Business">Business</MenuItem>
+          <MenuItem value="FirstClass">First Class</MenuItem>
+        </Select>
+        {/* End of Select */}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleModalSubmit}
+        >
+          Apply
+        </Button>
+      </div>
+    </Modal>
+
+
         {btn && (
           <button className="search-btn" onClick={() => showFlights()}>
             <SearchIcon />
@@ -200,7 +274,7 @@ function BookingInput({ btn }) {
           </Button>
         </div>
       )}
-    </>
+    </Wrapper>
   );
 }
 
